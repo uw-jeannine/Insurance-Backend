@@ -4,6 +4,7 @@ from django.urls import path
 from insurance import views
 from django.contrib.auth.views import LogoutView,LoginView
 from django.urls import path,include
+# from customer.views import inde
 
 urlpatterns = [
     path('admin/', admin.site.urls),

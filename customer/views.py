@@ -12,6 +12,8 @@ from insurance import models as CMODEL
 from insurance import forms as CFORM
 from django.contrib.auth.models import User
 
+def index_home(request):
+    return render(request,'index.html')
 
 def customerclick_view(request):
     if request.user.is_authenticated:
@@ -90,4 +92,10 @@ def question_history_view(request):
     customer = models.Customer.objects.get(user_id=request.user.id)
     questions = CMODEL.Question.objects.all().filter(customer=customer)
     return render(request,'customer/question_history.html',{'questions':questions,'customer':customer})
+
+def moredetail(request):
+    userForm=forms.CustomerUserForm()
+    customerForm=forms.CustomerForm()
+    mydict={'userForm':userForm,'customerForm':customerForm}
+    return render(request,'customer/moredetail.html',context=mydict)
 

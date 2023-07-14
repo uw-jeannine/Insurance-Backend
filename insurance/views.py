@@ -15,7 +15,7 @@ from customer import forms as CFORM
 def home_view(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect('afterlogin')  
-    return render(request,'insurance/index.html')
+    return render(request,'index.html')
 
 
 def is_customer(user):
@@ -244,12 +244,6 @@ def update_question_view(request,pk):
            
             return redirect('admin-question')
     return render(request,'insurance/update_question.html',{'questionForm':questionForm})
-
-
-
-
-
-
 
 def aboutus_view(request):
     return render(request,'insurance/aboutus.html')
