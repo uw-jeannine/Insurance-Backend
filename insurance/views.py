@@ -260,3 +260,5 @@ def contactus_view(request):
             return render(request, 'insurance/contactussuccess.html')
     return render(request, 'insurance/contactus.html', {'form':sub})
 
+def tracking(request):
+    return render(request,'tracking.html')

@@ -4,7 +4,6 @@ from django.urls import path
 from insurance import views
 from django.contrib.auth.views import LogoutView,LoginView
 from django.urls import path,include
-# from customer.views import inde
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -13,7 +12,7 @@ urlpatterns = [
     path('customer/',include('customer.urls')),
     path('',views.home_view,name=''),
     path('logout', LogoutView.as_view(template_name='insurance/logout.html'),name='logout'),
-    path('aboutus', views.aboutus_view),
+    path('tracking', views.tracking),
     path('contactus', views.contactus_view),
     path('afterlogin', views.afterlogin_view,name='afterlogin'),
 
