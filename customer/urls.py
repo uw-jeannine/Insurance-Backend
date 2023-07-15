@@ -16,6 +16,9 @@ urlpatterns = [
     path('ask-question', views.ask_question_view,name='ask-question'),
     path('question-history', views.question_history_view,name='question-history'),
 
-    path('moredetail', views.moredetail,name='moredetail'),
+    path('moredetail-vehicle', views.moredetail_vehicle,name='moredetail-vehicle'),
+    path('moredetail-medical', views.moredetail_medical,name='moredetail-medical'),
+    path('moredetail-life', views.moredetail_life,name='moredetail-life'),
+    path('moredetail-travel', views.moredetail_travel,name='moredetail-travel'),
 
 ]

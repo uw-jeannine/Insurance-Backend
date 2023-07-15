@@ -35,12 +35,12 @@
 <form method="POST" autocomplete="off" enctype="multipart/form-data" class="m-4">
   {% csrf_token %}
  
-  <!-- New fields for vehicle insurance -->
-  <div class="form-row">
-      <div class="form-group col-md-6">
+ 
+   <!-- Fields for vehicle insurance -->
+   <div class="form-row">
+    <div class="form-group col-md-6">
         <label for="marque">Marque</label>
         <select name="marque" class="form-control">
-            <option value="">Select Marque</option>
             <option value="TOYOTA">TOYOTA</option>
             <option value="HONDA">HONDA</option>
             <option value="YAMAHA">YAMAHA</option>
@@ -51,70 +51,73 @@
             <option value="KIA">KIA</option>
             <option value="HYUNDAI">HYUNDAI</option>
         </select>
-      </div>
-      <div class="form-group col-md-6">
-          <label for="model">Model</label>
-          <input type="text" name="model" class="form-control" placeholder="Model">
-      </div>
-  </div>
+    </div>
+    <div class="form-group col-md-6">
+        <label for="model">Model</label>
+        <input type="text" name="model" class="form-control" placeholder="Model">
+    </div>
+</div>
 
-  <div class="form-row">
-      <div class="form-group col-md-6">
-          <label for="plate_no">Plate No.</label>
-          <input type="text" name="plate_no" class="form-control" placeholder="Plate No.">
-      </div>
-      <div class="form-group col-md-6">
-          <label for="chassis_no">No. of Chassis</label>
-          <input type="text" name="chassis_no" class="form-control" placeholder="No. of Chassis">
-      </div>
-  </div>
+<div class="form-row">
+    <div class="form-group col-md-6">
+        <label for="plate_no">Plate Number</label>
+        <input type="text" name="plate_no" class="form-control" placeholder="Plate Number">
+    </div>
+    <div class="form-group col-md-6">
+        <label for="no_of_chassis">Number of Chassis</label>
+        <input type="text" name="no_of_chassis" class="form-control" placeholder="Number of Chassis">
+    </div>
+</div>
 
-  <div class="form-row">
-      <div class="form-group col-md-6">
-          <label for="year_of_manufacture">Year of Manufacture</label>
-          <select name="year_of_manufacture" class="form-control">
-            <option value="">Select Year</option>
+<div class="form-row">
+    <div class="form-group col-md-6">
+        <label for="year_of_manufacture">Year of Manufacture</label>
+        <select name="year_of_manufacture" class="form-control">
             {% for year in years %}
-                <option value="{{ year }}">{{ year }}</option>
-            {% endfor %}
+                    <option value="{{ year }}">{{ year }}</option>
+                {% endfor %}
         </select>
-      </div>
-      <div class="form-group col-md-6">
-          <label for="seat_capacity">Seat Capacity</label>
-          <input type="number" name="seat_capacity" class="form-control" placeholder="Seat Capacity">
-      </div>
-  </div>
+    </div>
+    <div class="form-group col-md-6">
+        <label for="seat_capacity">Seat Capacity</label>
+        <input type="text" name="seat_capacity" class="form-control" placeholder="Seat Capacity">
+    </div>
+</div>
 
-  <div class="form-row">
-      <div class="form-group col-md-6">
-          <label for="insured_value">Insured Value</label>
-          <input type="number" name="insured_value" class="form-control" placeholder="Insured Value">
-      </div>
-      <div class="form-group col-md-6">
-          <label for="type_of_vehicle">Type of Vehicle</label>
-          <input type="text" name="type_of_vehicle" class="form-control" placeholder="Type of Vehicle">
-      </div>
-  </div>
+<div class="form-row">
+    <div class="form-group col-md-6">
+        <label for="insured_value">Insured Value</label>
+        <input type="text" name="insured_value" class="form-control" placeholder="Insured Value">
+    </div>
+    <div class="form-group col-md-6">
+        <label for="type_of_vehicle">Type of Vehicle</label>
+        <input type="text" name="type_of_vehicle" class="form-control" placeholder="Type of Vehicle">
+    </div>
+</div>
 
-  <div class="form-row">
-      <div class="form-group col-md-6">
-          <label for="territorial_limit">Territorial Limit</label>
-          <input type="text" name="territorial_limit" class="form-control" placeholder="Territorial Limit">
-      </div>
-      <div class="form-group col-md-6">
-          <label for="occupants_covered">Occupants Covered</label>
-          <input type="text" name="occupants_covered" class="form-control" placeholder="Occupants Covered">
-      </div>
-  </div>
+<div class="form-row">
+    <div class="form-group col-md-6">
+        <label for="territorial_limit">Territorial Limit</label>
+        <input type="text" name="territorial_limit" class="form-control" placeholder="Territorial Limit">
+    </div>
+    <div class="form-group col-md-6">
+        <label for="occupants_covered">Occupants Covered</label>
+        <input type="text" name="occupants_covered" class="form-control" placeholder="Occupants Covered">
+    </div>
+</div>
 
-  <div class="form-row">
-      <div class="form-group col-md-6">
-          <label for="deductible">Deductible</label>
-          <input type="text" name="deductible" class="form-control" placeholder="Deductible">
-      </div>
-  </div>
+<div class="form-row">
+    <div class="form-group col-md-6">
+        <label for="deductible">Deductible</label>
+        <input type="text" name="deductible" class="form-control" placeholder="Deductible">
+    </div>
+    <div class="form-group col-md-6">
+        <label for="policy_status">Policy Status</label>
+        <input type="text" name="policy_status" class="form-control" placeholder="Policy Status">
+    </div>
+</div>
 
-  <button type="submit" class="btn btn-primary ml-5">Apply</button>
+<button type="submit" class="btn btn-primary ml-5">Apply</button>
 </form>
 
 

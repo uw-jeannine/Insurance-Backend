@@ -93,7 +93,7 @@ def question_history_view(request):
     questions = CMODEL.Question.objects.all().filter(customer=customer)
     return render(request,'customer/question_history.html',{'questions':questions,'customer':customer})
 
-def moredetail(request):
+def moredetail_vehicle(request):
     userForm=forms.CustomerUserForm()
     customerForm=forms.CustomerForm()
     mydict={'userForm':userForm,'customerForm':customerForm}
@@ -106,4 +106,30 @@ def moredetail(request):
     }
 
     return render(request,'customer/moredetail-vehicle.html',context=mydict)
+
+def moredetail_medical(request):
+    userForm=forms.CustomerUserForm()
+    customerForm=forms.CustomerForm()
+    mydict={'userForm':userForm,'customerForm':customerForm}
+
+
+    return render(request,'customer/moredetails-medial.html',context=mydict)
+
+
+def moredetail_life(request):
+    userForm=forms.CustomerUserForm()
+    customerForm=forms.CustomerForm()
+    mydict={'userForm':userForm,'customerForm':customerForm}
+
+    return render(request,'customer/moredetails_life.html',context=mydict)
+
+
+def moredetail_travel(request):
+    userForm=forms.CustomerUserForm()
+    customerForm=forms.CustomerForm()
+    mydict={'userForm':userForm,'customerForm':customerForm}
+
+    return render(request,'customer/moredetails_travel.html',context=mydict)
+
+
 
