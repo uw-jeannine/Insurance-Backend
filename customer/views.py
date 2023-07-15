@@ -97,5 +97,13 @@ def moredetail(request):
     userForm=forms.CustomerUserForm()
     customerForm=forms.CustomerForm()
     mydict={'userForm':userForm,'customerForm':customerForm}
-    return render(request,'customer/moredetail.html',context=mydict)
+
+    years = list(range(1950, 2023))
+
+    context = {
+        'years': years,
+       
+    }
+
+    return render(request,'customer/moredetail-vehicle.html',context=mydict)
 

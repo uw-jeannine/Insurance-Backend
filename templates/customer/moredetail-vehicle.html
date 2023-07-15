@@ -1,0 +1,123 @@
+{% extends 'customer/customerbase.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    a:link {
+      text-decoration: none;
+    }
+
+    label #sidebar_btn {
+      z-index: 1;
+      color: #fff;
+      position: fixed;
+      cursor: pointer;
+      left: 300px;
+      padding-left: 60px;
+      margin-top: 15px;
+      font-size: 20px;
+
+      transition: 0.5s;
+      transition-property: color;
+    }
+  </style>
+</head>
+
+<br><br><br>
+<h3 style="text-align: center;color: rgb(49, 38, 38);">Required information for this policy</h3>
+<form method="POST" autocomplete="off" enctype="multipart/form-data" class="m-4">
+  {% csrf_token %}
+ 
+  <!-- New fields for vehicle insurance -->
+  <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="marque">Marque</label>
+        <select name="marque" class="form-control">
+            <option value="">Select Marque</option>
+            <option value="TOYOTA">TOYOTA</option>
+            <option value="HONDA">HONDA</option>
+            <option value="YAMAHA">YAMAHA</option>
+            <option value="TVS">TVS</option>
+            <option value="MERCEDES">MERCEDES</option>
+            <option value="VW">VW</option>
+            <option value="VWG">VWG</option>
+            <option value="KIA">KIA</option>
+            <option value="HYUNDAI">HYUNDAI</option>
+        </select>
+      </div>
+      <div class="form-group col-md-6">
+          <label for="model">Model</label>
+          <input type="text" name="model" class="form-control" placeholder="Model">
+      </div>
+  </div>
+
+  <div class="form-row">
+      <div class="form-group col-md-6">
+          <label for="plate_no">Plate No.</label>
+          <input type="text" name="plate_no" class="form-control" placeholder="Plate No.">
+      </div>
+      <div class="form-group col-md-6">
+          <label for="chassis_no">No. of Chassis</label>
+          <input type="text" name="chassis_no" class="form-control" placeholder="No. of Chassis">
+      </div>
+  </div>
+
+  <div class="form-row">
+      <div class="form-group col-md-6">
+          <label for="year_of_manufacture">Year of Manufacture</label>
+          <select name="year_of_manufacture" class="form-control">
+            <option value="">Select Year</option>
+            {% for year in years %}
+                <option value="{{ year }}">{{ year }}</option>
+            {% endfor %}
+        </select>
+      </div>
+      <div class="form-group col-md-6">
+          <label for="seat_capacity">Seat Capacity</label>
+          <input type="number" name="seat_capacity" class="form-control" placeholder="Seat Capacity">
+      </div>
+  </div>
+
+  <div class="form-row">
+      <div class="form-group col-md-6">
+          <label for="insured_value">Insured Value</label>
+          <input type="number" name="insured_value" class="form-control" placeholder="Insured Value">
+      </div>
+      <div class="form-group col-md-6">
+          <label for="type_of_vehicle">Type of Vehicle</label>
+          <input type="text" name="type_of_vehicle" class="form-control" placeholder="Type of Vehicle">
+      </div>
+  </div>
+
+  <div class="form-row">
+      <div class="form-group col-md-6">
+          <label for="territorial_limit">Territorial Limit</label>
+          <input type="text" name="territorial_limit" class="form-control" placeholder="Territorial Limit">
+      </div>
+      <div class="form-group col-md-6">
+          <label for="occupants_covered">Occupants Covered</label>
+          <input type="text" name="occupants_covered" class="form-control" placeholder="Occupants Covered">
+      </div>
+  </div>
+
+  <div class="form-row">
+      <div class="form-group col-md-6">
+          <label for="deductible">Deductible</label>
+          <input type="text" name="deductible" class="form-control" placeholder="Deductible">
+      </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary ml-5">Apply</button>
+</form>
+
+
+
+<br><br>
+{% endblock content %}
