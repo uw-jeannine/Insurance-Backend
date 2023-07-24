@@ -262,3 +262,6 @@ def contactus_view(request):
 
 def tracking(request):
     return render(request,'tracking.html')
+
+def products(request):
+    return render(request,'products.html')

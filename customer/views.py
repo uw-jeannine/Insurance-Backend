@@ -15,6 +15,7 @@ from django.contrib.auth.models import User
 def index_home(request):
     return render(request,'index.html')
 
+
 def customerclick_view(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect('afterlogin')
@@ -111,8 +112,6 @@ def moredetail_medical(request):
     userForm=forms.CustomerUserForm()
     customerForm=forms.CustomerForm()
     mydict={'userForm':userForm,'customerForm':customerForm}
-
-
     return render(request,'customer/moredetails-medial.html',context=mydict)
 
 
@@ -120,7 +119,6 @@ def moredetail_life(request):
     userForm=forms.CustomerUserForm()
     customerForm=forms.CustomerForm()
     mydict={'userForm':userForm,'customerForm':customerForm}
-
     return render(request,'customer/moredetails_life.html',context=mydict)
 
 
@@ -128,7 +126,6 @@ def moredetail_travel(request):
     userForm=forms.CustomerUserForm()
     customerForm=forms.CustomerForm()
     mydict={'userForm':userForm,'customerForm':customerForm}
-
     return render(request,'customer/moredetails_travel.html',context=mydict)
 
 
