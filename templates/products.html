@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div id="page-content">
+
+    <section class="product-tab">
+        <div class="container">
+            <div class="row">
+                <div id="parentVerticalTab">
+                    <h2>Products</h2>
+                    <ul class="resp-tabs-list hor_1 col-sm-3 col-md-3 col-lg-3">
+                        <li><i class="fa-solid fa-fire"></i> Fire Insurance</li>
+                        <li><i class="fa-sharp fa-solid fa-wheat-awn"></i> Agriculture Insurance</li>
+                        <li><i class="ti-heart-broken"></i> Medical Insurance</li>
+                        <li><i class="ti-car"></i> Motor Insurance</li>
+                    </ul>
+                    <div class="col-sm-5 col-md-5 col-lg-5 resp-tabs-container hor_1">
+                        <div>
+                            <div class="prod-tab-content">
+                                <h4>
+                                    <span class="prod-cion"><i class="fa-solid fa-fire"></i></span>
+                                    Fire Insurance
+                                </h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nibh urna,
+                                    euismod ut ornare non, volutpat vel tortor. Integer</p>
+                                <p>et placerat suscipit. Sed sodales scelerisque commodo. Nam porta cursus lectus.
+                                </p>
+                                <p class="tel">
+                                    <i class="fa fa-phone"></i> +250788353911 <span>Call Us Now</span>
+                                </p>
+                                <p>
+                                    <a class="btn-default" href="contactus">Get In touch with us</a>
+                                </p>
+                            </div>
+                            <img src="{% static 'images/Large_bonfire.jpg' %}" style="object-fit: cover; height: auto;" alt="" class="img-responsive" />
+                        </div>
+                        <div>
+                            <div class="prod-tab-content">
+                                <h4>
+                                    <span class="prod-cion"><i class="fa-sharp fa-solid fa-wheat-awn"></i></span>
+                                    Agriculture Insurance
+                                </h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nibh urna,
+                                    euismod ut ornare non, volutpat vel tortor. Integer</p>
+                                <p>et placerat suscipit. Sed sodales scelerisque commodo. Nam porta cursus lectus.
+                                </p>
+                                <p class="tel">
+                                    <i class="fa fa-phone"></i> +250788353911 <span>Call Us Now</span>
+                                </p>
+                                <p>
+                                    <a class="btn-default" href="contactus">Get In touch with us</a>
+                                </p>
+                            </div>
+                            <img src="{% static 'images/agriculture.jpg' %}" alt="" class="img-responsive" />
+                        </div>
+                        <div>
+                            <div class="prod-tab-content">
+                                <h4>
+                                    <span class="prod-cion"><i class="ti-heart-broken"></i></span>
+                                    Medical Insurance
+                                </h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nibh urna,
+                                    euismod ut ornare non, volutpat vel tortor. Integer</p>
+                                <p>et placerat suscipit. Sed sodales scelerisque commodo. Nam porta cursus lectus.
+                                </p>
+                                <p class="tel">
+                                    <i class="fa fa-phone"></i> +250788353911 <span>Call Us Now</span>
+                                </p>
+                                <p>
+                                    <a class="btn-default" href="contactus">Get In touch with us</a>
+                                </p>
+                            </div>
+                            <img src="{% static 'images/3.jpg' %}" alt="" class="img-responsive" />
+                        </div>
+                        <div>
+                            <div class="prod-tab-content">
+                                <h4>
+                                    <span class="prod-cion"><i class="ti-car"></i></span>
+                                    Motor Insurance
+                                </h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nibh urna,
+                                    euismod ut ornare non, volutpat vel tortor. Integer</p>
+                                <p>et placerat suscipit. Sed sodales scelerisque commodo. Nam porta cursus lectus.
+                                </p>
+                                <p class="tel">
+                                    <i class="fa fa-phone"></i> +250788353911 <span>Call Us Now</span>
+                                </p>
+                                <p>
+                                    <a class="btn-default" href="contactus">Get In touch with us</a>
+                                </p>
+                            </div>
+                            <img src="{% static 'images/cars.jpg' %}" alt="" class="img-responsive" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+   
+    <div class="container">
+        <div class="row">
+            <section class="">
+                <div class="intro">
+                    <h2>Welcome to Auto Insurance System</h2>
+                    <p>Welcome to our Auto Insurance System, your one-stop solution for reliable and comprehensive auto insurance coverage. Our platform is designed to provide you with seamless and hassle-free insurance services to protect you and your vehicle on the road.</p>
+                    <ul class="row">
+                        <li class="col-sm-4">
+                            <i class="fa fa-life-ring"></i>
+                            <h3>24x7 Support</h3>
+                            <p>Rest assured that our dedicated support team is available round the clock to assist you with any insurance-related queries or concerns. We are here to provide you with the support you need at any time of the day or night.</p>
+                        </li>
+                        <li class="col-sm-4">
+                            <i class="ti-marker-alt"></i>
+                            <h3>Easy Claim System</h3>
+                            <p>Our Auto Insurance System offers a hassle-free and user-friendly claim process. In the event of an accident or damage to your vehicle, we make it easy for you to file a claim and ensure a swift resolution to get you back on the road as soon as possible.</p>
+                        </li>
+                        <li class="col-sm-4">
+                            <a href="contactus">
+                            <i class="ti-email"></i>
+                            <h3>Get in Touch with Us</h3>
+                        </a>
+                            <p>We value your feedback and inquiries. Feel free to get in touch with us via email or phone to discuss your insurance needs, explore coverage options, or clarify any doubts you may have. Our team is here to provide you with personalized assistance and advice.</p>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            
+        </div>
+    </div>
+  
+   
+
+</div>
+{% endblock %}
