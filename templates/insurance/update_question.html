@@ -51,19 +51,19 @@
 </head>
 
 <br><br>
-<h3 style="text-align:center;">Update Question</h3>
+<h3 style="text-align:center;">Respond to this Query</h3>
 <div>
   <form method="post" autocomplete="off" enctype="multipart/form-data" style="margin-left:200px;margin-right:200px;">
       {% csrf_token %}
         <label for="course_name">Question</label>
       {% render_field questionForm.description class="form-control"%}
 
-        <label for="course_name">Your Comment</label>
+        <label for="course_name">Your Response</label>
       <input type="text" name="admin_comment" id="admin_comment" class="form-control">
 
 
 
-    <input type="submit" value="Update">
+    <input type="submit" value="Respond">
   </form>
 </div>
 

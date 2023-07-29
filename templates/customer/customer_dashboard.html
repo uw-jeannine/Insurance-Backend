@@ -26,7 +26,7 @@
       }
   
       .bg-c-green {
-        background:#4C51BF;
+        background:#29ACE3;
       }
   
       .bg-c-yellow {
@@ -67,6 +67,8 @@
       left: 0px;
       right: 0px;
     }
+
+    
     </style>
   </head>
 
@@ -117,6 +119,41 @@
     </div>
   </div>
 
+
+  <div class="container">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h6 class="panel-title">Available Policies</h6>
+      </div>
+      <table class="table table-hover" id="dev-table">
+        <thead>
+          <tr>
+          <th>Serial No.</th>
+            <th>Policy Name</th>
+            <th> Category</th>
+            <th> Sum Assurance</th>
+            <th> Premium</th>
+            <th> Tenure</th>
+            <th> Creation Date</th>
+            <th> Apply</th>
+            
+          </tr>
+        </thead>
+        {% for t in policies %}
+        <tr>
+          <td> {{ forloop.counter }}</td>
+          <td> {{t.policy_name}}</td>
+          <td> {{t.category}}</td>
+          <td> {{t.sum_assurance}}</td>
+          <td> {{t.premium}}</td>
+          <td> {{t.tenure}}</td>
+          <td>{{t.creation_date}}</td>
+          <td><a class="btn btn-danger btn-xs" href="{% url 'moredetail-vehicle' %}">Apply</a></td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </div>
 
 <br><br><br><br><br><br><br><br><br><br>
 

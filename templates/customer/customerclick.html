@@ -1,42 +1,48 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 {% load static %}
-<html lang="en" dir="ltr">
+{% block content %}
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <style media="screen">
     .jumbotron {
-      margin-top: 0px;
+      margin-top: 40px;
       margin-bottom: 0px;
+      height: 82vh;
     }
 
     .jumbotron h1 {
       text-align: center;
     }
 
+    h1{
+      color:#29ACE3 ;
+    }
+
+
+    .btn{
+      background-color:#29ACE3;
+      color: white;
+    }
+
+
   </style>
 
-</head>
 
-<body>
-
-  {% include "insurance/navbar.html" %}
   <br><br>
   <div class="jumbotron text-center" style="margin-bottom:0px;">
-    <h1 class="display-4">Hello, Customer</h1>
-    <p class="lead">Welcome to Insurance Management System</p>
+    <h1 class="display-4 color='29ACE3' ">Hello, Customer</h1>
+    <p class="lead">Welcome To Auto Insurance System</p>
     <hr class="my-4">
     <p>You can access various features after Login.</p>
     <p class="lead">
-      <a class="btn btn-primary btn-lg" href="customersignup" role="button">Create Your Account</a>
-      <a class="btn btn-primary btn-lg" href="customerlogin" role="button">Login</a>
+      <a class="btn  btn-lg" href="customersignup" role="button">Create Your Account</a>
+      <a class="btn btn-lg" href="customerlogin" role="button">Login</a>
     </p>
     <br><br><br>
   </div>
  
   {% include "insurance/footer.html" %}
-</body>
+  {% endblock %}
 
-</html>
+
+

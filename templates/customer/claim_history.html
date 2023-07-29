@@ -1,6 +1,6 @@
-{% extends 'insurance/adminbase.html' %}
+{% extends 'customer/customerbase.html' %}
 {% block content %}
-{%load static%}
+{% load static %}
 
 <head>
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -20,16 +20,16 @@
       margin: 100px;
     }
 
-       label #sidebar_btn {
+    label #sidebar_btn {
       z-index: 1;
       color: #fff;
       position: fixed;
       cursor: pointer;
       left: 300px;
       padding-left: 60px;
-      margin-top:15px;
+      margin-top: 15px;
       font-size: 20px;
-      
+
       transition: 0.5s;
       transition-property: color;
     }
@@ -39,29 +39,27 @@
 <div class="container">
   <div class="panel panel-primary">
     <div class="panel-heading">
-      <h6 class="panel-title">Questions</h6>
+      <h6 class="panel-title">Claim Submission History</h6>
     </div>
     <table class="table table-hover" id="dev-table">
       <thead>
         <tr>
-            <th>Serial No.</th>
-          <th>Customer Name</th>
-          <th> Problem</th>
-          <th> Admin Comment</th>
-
-          <th> Asked Date</th>
-             <th>Respond</th>
+          <th>No.</th>
+          <th>Claim Type</th>
+          <th>Description</th>
+          <th>Date of Incident</th>
+          <th>Coverage Amount</th>
+          <th>Status</th>
         </tr>
       </thead>
-      {% for t in questions %}
+      {% for claim in claims %}
       <tr>
         <td> {{ forloop.counter }}</td>
-        <td> {{t.customer}}</td>
-        <td> {{t.description}}</td>
-        <td> {{t.admin_comment}}</td>
-        <td> {{t.asked_date}}</td>
-        
-        <td><a class="btn btn-danger btn-xs" href="{% url 'update-question' t.id  %}"><span class="glyphicon glyphicon-edit"></span></a></td>
+        <td>{{ claim.claim_type }}</td>
+        <td>{{ claim.description }}</td>
+        <td>{{ claim.date_of_incident }}</td>
+        <td>{{ claim.coverage_amount }}</td>
+        <td>Approved/Disapproved</td>
       </tr>
       {% endfor %}
     </table>

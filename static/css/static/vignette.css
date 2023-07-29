@@ -1,0 +1,50 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(210, 207, 204);
+  height: 100vh;
+  padding-left: 100px;
+}
+.content .first-section {
+  display: flex;
+  gap: 24px;
+  width: 100%;
+}
+.content .first-section img {
+  width: 150px;
+  height: 150px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border: 1px solid grey;
+}
+.content .first-section .info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.content .first-section .info p {
+  font-size: 20px;
+  width: 80%;
+}
+.content .second-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.content .second-section .informations {
+  display: flex;
+  gap: 12px;
+}
+.content .second-section .informations p, .content .second-section .informations h1 {
+  font-size: 24px;
+}/*# sourceMappingURL=vignette.css.map */

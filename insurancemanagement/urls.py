@@ -12,7 +12,8 @@ urlpatterns = [
     
     path('logout', LogoutView.as_view(template_name='insurance/logout.html'),name='logout'),
     path('tracking', views.tracking),
-     path('products', views.products,name='products'),
+    path('products', views.products,name='products'),
+    path('vignette', views.vignette,name='vignette'),
     path('contactus', views.contactus_view),
     path('afterlogin', views.afterlogin_view,name='afterlogin'),
 
@@ -49,6 +50,7 @@ urlpatterns = [
     path('reject-request/<int:pk>', views.disapprove_request_view,name='reject-request'),
 
     path('admin-question', views.admin_question_view,name='admin-question'),
+    path('admin-claim', views.admin_claim_view,name='admin-claim'),
     path('update-question/<int:pk>', views.update_question_view,name='update-question'),
 
 ]
