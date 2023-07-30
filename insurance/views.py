@@ -226,6 +226,10 @@ def admin_question_view(request):
     questions = models.Question.objects.all()
     return render(request,'insurance/admin_question.html',{'questions':questions})
 
+def admin_claim_view(request):
+    # questions = models.Question.objects.all()
+    return render(request,'insurance/admin_claims.html')
+
 def update_question_view(request,pk):
     question = models.Question.objects.get(id=pk)
     questionForm=forms.QuestionForm(instance=question)
@@ -262,6 +266,8 @@ def contactus_view(request):
 
 def tracking(request):
     return render(request,'tracking.html')
+def vignette(request):
+    return render(request,'vignette.html')
 
 def products(request):
     return render(request,'products.html')

@@ -17,9 +17,12 @@ urlpatterns = [
     path('ask-question', views.ask_question_view,name='ask-question'),
     path('question-history', views.question_history_view,name='question-history'),
 
+     path('submit-claim', views.submit_claim_view,name='submit-claim'),
+    path('claim-history', views.claim_history_view,name='claim-history'),
+
     path('moredetail-vehicle', views.moredetail_vehicle,name='moredetail-vehicle'),
     path('moredetail-medical', views.moredetail_medical,name='moredetail-medical'),
-    path('moredetail-life', views.moredetail_life,name='moredetail-life'),
-    path('moredetail-travel', views.moredetail_travel,name='moredetail-travel'),
+    path('moredetail-fire', views.moredetail_fire,name='moredetail-fire'),
+    path('moredetail-agriculture', views.moredetail_agriculture,name='moredetail-agriculture'),
 
 ]
