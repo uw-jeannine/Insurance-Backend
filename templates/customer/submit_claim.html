@@ -56,7 +56,7 @@
 </head>
 
 <h2 style="text-align: center; color: rgb(0, 183, 255);">CLAIM FORM</h2>
-<form method="POST" autocomplete="off" style="margin: 100px; margin-top: 0px;">
+<form method="POST" autocomplete="off" enctype="multipart/form-data" style="margin: 100px; margin-top: 0px;" action="{% url 'submit-claim' %}">
   {% csrf_token %}
 
   <div class="form-group">
@@ -71,17 +71,17 @@
 
   <div class="form-group">
     <label for="phone">Phone</label>
-    <input type="text" class="form-control" name="phone" required>
+    <input type="text" class="form-control" name="phonenumber" required>
   </div>
 
   <div class="form-group">
     <label for="policy_number">Policy Number</label>
-    <input type="text" class="form-control" name="policy_number" required>
+    <input type="text" class="form-control" name="policynumber" required>
   </div>
 
   <div class="form-group">
     <label for="claim_type">Claim Type</label>
-    <select class="form-control" name="claim_type" required>
+    <select class="form-control" name="claimtype" required>
       <option value="">Select claim type</option>
       <option value="Motor Insurance">Motor Insurance</option>
       <option value="Fire Insurance">Fire Insurance</option>
@@ -97,7 +97,7 @@
 
   <div class="form-group">
     <label for="date_of_incident">Date of Incident</label>
-    <input type="date" class="form-control" name="date_of_incident" required>
+    <input type="date" class="form-control" name="dateofincident" required>
   </div>
 
   <div class="form-group">
@@ -107,32 +107,32 @@
 
   <div class="form-group">
     <label for="witness_info">Witness Information (if applicable)</label>
-    <input type="text" class="form-control" name="witness_info">
+    <input type="text" class="form-control" name="witnessinformation">
   </div>
 
   <div class="form-group">
     <label for="vehicle_property_info">Vehicle/Property Information (if applicable)</label>
-    <input type="text" class="form-control" name="vehicle_property_info">
+    <input type="text" class="form-control" name="vehicleproperty">
   </div>
 
   <div class="form-group">
     <label for="police_report">Police Report (if applicable)</label>
-    <input type="file" class="form-control" name="police_report">
+    <input type="file" class="form-control" name="policereport">
   </div>
 
   <div class="form-group">
     <label for="injury_info">Injury Information (if applicable)</label>
-    <textarea class="form-control" name="injury_info" rows="3" placeholder="Enter injury information here"></textarea>
+    <textarea class="form-control" name="injuryinformation" rows="3" placeholder="Enter injury information here"></textarea>
   </div>
 
   <div class="form-group">
     <label for="photos_documents">Upload Photos/Documents (if applicable)</label>
-    <input type="file" class="form-control" name="photos_documents">
+    <input type="file" class="form-control" name="uploadphotos">
   </div>
 
   <div class="form-group">
     <label for="additional_comments">Additional Comments</label>
-    <textarea class="form-control" name="additional_comments" rows="3" placeholder="Enter any additional comments here"></textarea>
+    <textarea class="form-control" name="additionalcomment" rows="3" placeholder="Enter any additional comments here"></textarea>
   </div>
 
 

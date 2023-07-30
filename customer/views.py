@@ -11,6 +11,7 @@ from django.core.mail import send_mail
 from insurance import models as CMODEL
 from insurance import forms as CFORM
 from django.contrib.auth.models import User
+from customer.models import Submit_claim
 
 def index_home(request):
     return render(request,'index.html')
@@ -95,17 +96,25 @@ def question_history_view(request):
     return render(request,'customer/question_history.html',{'questions':questions,'customer':customer})
 
 def submit_claim_view(request):
-    customer = models.Customer.objects.get(user_id=request.user.id)
-    questionForm=CFORM.QuestionForm() 
+
+    if request.method == 'POST':
+        submit_claim = Submit_claim()
+        submit_claim.name =  request.POST['name']
+        submit_claim.email = request.POST['email']
+        submit_claim.phonenumber = request.POST['phonenumber']
+        submit_claim.policynumber = request.POST['claimtype'] 
+        submit_claim.description = request.POST['description']
+        submit_claim.dateofincident = request.POST['dateofincident']
+        submit_claim.location = request.POST['location']
+        submit_claim.witnessinformation = request.POST['witnessinformation']
+        submit_claim.vehicleproperty =  request.POST['vehicleproperty']
+        submit_claim.policereport =  request.POST['policereport'] 
+        submit_claim.injuryinformation = request.POST['injuryinformation']
+        submit_claim.uploadphotos = request.POST['uploadphotos']
+        submit_claim.additionalcomment = request.POST['additionalcomment']
     
-    # if request.method=='POST':
-        # questionForm=CFORM.QuestionForm(request.POST)
-        # if questionForm.is_valid():
-            
-        #     question = questionForm.save(commit=False)
-        #     question.customer=customer
-        #     question.save()
-        #     return redirect('question-history')
+        submit_claim.save()
+    
     return render(request,'customer/submit_claim.html')
 
 def claim_history_view(request):
