@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from . import models
+from .models import ApplyPolicyAgriculture, ApplyPolicyProperty, ApplyPolicyMedical
 
 
 class CustomerUserForm(forms.ModelForm):
@@ -16,3 +17,18 @@ class CustomerForm(forms.ModelForm):
         model=models.Customer
         fields=['address','mobile','profile_pic']
 
+
+class PolicyAgricultureForm(forms.ModelForm):
+    class Meta:
+        model = ApplyPolicyAgriculture
+        fields = '__all__'
+
+class PolicyPropertyForm(forms.ModelForm):
+    class Meta:
+        model = ApplyPolicyProperty
+        fields = '__all__'
+
+class PolicyMedicalForm(forms.ModelForm):
+    class Meta:
+        model = ApplyPolicyMedical
+        fields = '__all__'

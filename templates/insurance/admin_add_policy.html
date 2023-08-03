@@ -18,37 +18,31 @@
   </style>
 </head>
 <h2 style="text-align:center; color:#00b2ce;">ADD POLICY</h2>
-<form method="POST" autocomplete="off" style="margin:100px;margin-top: 0px;">
-  {%csrf_token%}
+<form method="POST" autocomplete="off" style="margin: 100px; margin-top: 0px;">
+  {% csrf_token %}
   <div class="form-group">
-    <label for="course_name">Category</label>
-    {% render_field policyForm.category class="form-control" placeholder="Life Insurance" %}
+      <label for="category">Category</label>
+      {% render_field policyForm.category class="form-control" placeholder="Life Insurance" %}
 
-    <label for="course_name">Policy Name</label>
-    {% render_field policyForm.policy_name class="form-control" placeholder="Jeevan Surbhi" %}
+      <label for="policy_name">Policy Name</label>
+      {% render_field policyForm.policy_name class="form-control" placeholder="Jeevan Surbhi" %}
 
+      <label for="premium_amount">Premium Amount</label>
+      {% render_field policyForm.premium_amount class="form-control" placeholder="5000" %}
 
-    <label for="premium_amount">Premium Amount</label>
-    {% render_field policyForm.premium class="form-control" placeholder="5000" %}
+      <label for="deductible">Deductible</label>
+      {% render_field policyForm.deductible class="form-control" placeholder="5000" %}
 
-    <label for="deductible">Deductible</label>
-    <input type="text" name="deductible" class="form-control" placeholder="Deductible">
-    {% render_field policyForm.premium class="form-control" placeholder="5000" %}
+      <label for="coverage_amount">Coverage Amount</label>
+      {% render_field policyForm.coverage_amount class="form-control" placeholder="5000" %}
 
-
-    <label for="coverage_amount">Coverage Amount</label>
-    {% render_field policyForm.premium class="form-control" placeholder="5000" %}
-
-
-    <label for="Period">Period</label>
-    {% render_field policyForm.tenure class="form-control" placeholder="12" %}
-
-
+      <label for="tenure">Period</label>
+      {% render_field policyForm.tenure class="form-control" placeholder="12" %}
   </div>
-
 
   <br>
   <button type="submit" class="btn btn-primary">ADD</button>
 </form>
+
 <br><br><br><br>
 {% endblock content %}

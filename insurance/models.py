@@ -9,12 +9,13 @@ class Category(models.Model):
         return self.category_name
 
 class Policy(models.Model):
-    category= models.ForeignKey('Category', on_delete=models.CASCADE)
-    policy_name=models.CharField(max_length=200)
-    sum_assurance=models.PositiveIntegerField()
-    premium=models.PositiveIntegerField()
-    tenure=models.PositiveIntegerField()
-    creation_date =models.DateField(auto_now=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    policy_name = models.CharField(max_length=200)
+    premium_amount = models.PositiveIntegerField()
+    deductible = models.PositiveIntegerField()
+    coverage_amount = models.PositiveIntegerField()
+    tenure = models.PositiveIntegerField()
+    creation_date = models.DateField(auto_now=True)
     def __str__(self):
         return self.policy_name
 

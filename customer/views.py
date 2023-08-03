@@ -11,9 +11,11 @@ from django.core.mail import send_mail
 from insurance import models as CMODEL
 from insurance import forms as CFORM
 from django.contrib.auth.models import User
-from customer.models import Submit_claim,ApplyPolicy
+from customer.models import *
 from django.contrib import messages
 from insurance.models import Policy
+from .forms import PolicyAgricultureForm, PolicyPropertyForm, PolicyMedicalForm
+
 def index_home(request):
     return render(request,'index.html')
 
@@ -130,7 +132,7 @@ def moredetail_vehicle(request):
        
     }
     if request.method == 'POST':
-        applyData =  ApplyPolicy()
+        applyData =  ApplyPolicyVehicle()
         applyData.marque =  request.POST['marque']
         applyData.platenumnber = request.POST['platenumber']
         applyData.yearofmanufacture =  request.POST['yearofmanufacture']
@@ -165,3 +167,34 @@ def moredetail_agriculture(request):
     customerForm=forms.CustomerForm()
     mydict={'userForm':userForm,'customerForm':customerForm}
     return render(request,'customer/moredetails_agriculture.html',context=mydict)
+
+
+def apply_policy_agriculture(request):
+    if request.method == 'POST':
+        form = PolicyAgricultureForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('success_url')  
+    else:
+        form = PolicyAgricultureForm()
+    return render(request, 'customer/moredetails_agriculture.html', {'form': form})
+
+def apply_policy_property(request):
+    if request.method == 'POST':
+        form = PolicyPropertyForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('success_url')  
+    else:
+        form = PolicyPropertyForm()
+    return render(request, 'customer/moredetails_fire.html', {'form': form})
+
+def apply_policy_medical(request):
+    if request.method == 'POST':
+        form = PolicyMedicalForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('success_url') 
+    else:
+        form = PolicyMedicalForm()
+    return render(request, 'customer/moredetails-medial.html', {'form': form})
