@@ -36,10 +36,26 @@
 </head>
 <br><br>
 <div class="container">
+  <div class="d-block mb-5" style="margin-bottom: 1rem;">
+    <a href="{% url 'moredetail-vehicle' %}">
+      <button class="btn btn-success">Apply Vehicle insurance</button>
+    </a>
+    <a href="{% url 'moredetail-agriculture' %}">
+      <button class="btn btn-success">Apply agriculture insurance</button>
+    </a>
+    <a href="{% url 'moredetail-medical' %}">
+      <button class="btn btn-success">Apply medical insurance</button>
+    </a>
+    <a href="{% url 'moredetail-fire'  %}">
+      <button class="btn btn-success">Apply Fire insurance</button>
+    </a>
+</div>
   <div class="panel panel-primary">
+
     <div class="panel-heading">
       <h6 class="panel-title">Available Policies</h6>
     </div>
+    
     <table class="table table-hover" id="dev-table">
       <thead>
         <tr>
@@ -63,7 +79,6 @@
         <td> {{t.premium}}</td>
         <td> {{t.tenure}}</td>
         <td>{{t.creation_date}}</td>
-        <td><a class="btn btn-danger btn-xs" href="{% url 'moredetail-vehicle' %}">Apply</a></td>
       </tr>
       {% endfor %}
     </table>

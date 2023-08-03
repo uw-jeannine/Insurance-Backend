@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from customer.models import Customer
+
 class Category(models.Model):
     category_name =models.CharField(max_length=20)
     creation_date =models.DateField(auto_now=True)

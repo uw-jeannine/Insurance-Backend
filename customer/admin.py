@@ -4,3 +4,4 @@ from .models import *
 
 admin.site.register(Customer)
 admin.site.register(Submit_claim)
+admin.site.register(ApplyPolicy)

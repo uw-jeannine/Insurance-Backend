@@ -11,8 +11,9 @@ from django.core.mail import send_mail
 from insurance import models as CMODEL
 from insurance import forms as CFORM
 from django.contrib.auth.models import User
-from customer.models import Submit_claim
-
+from customer.models import Submit_claim,ApplyPolicy
+from django.contrib import messages
+from insurance.models import Policy
 def index_home(request):
     return render(request,'index.html')
 
@@ -108,13 +109,12 @@ def submit_claim_view(request):
         submit_claim.location = request.POST['location']
         submit_claim.witnessinformation = request.POST['witnessinformation']
         submit_claim.vehicleproperty =  request.POST['vehicleproperty']
-        submit_claim.policereport =  request.POST['policereport'] 
+        submit_claim.policereport =  request.FILES['policereport'] 
         submit_claim.injuryinformation = request.POST['injuryinformation']
-        submit_claim.uploadphotos = request.POST['uploadphotos']
+        submit_claim.uploadphotos = request.FILES['uploadphotos']
         submit_claim.additionalcomment = request.POST['additionalcomment']
-    
         submit_claim.save()
-    
+        messages.success( request,"Claims added successfully")
     return render(request,'customer/submit_claim.html')
 
 def claim_history_view(request):
@@ -124,15 +124,27 @@ def moredetail_vehicle(request):
     userForm=forms.CustomerUserForm()
     customerForm=forms.CustomerForm()
     mydict={'userForm':userForm,'customerForm':customerForm}
-
     years = list(range(1950, 2023))
-
     context = {
         'years': years,
        
     }
-
-    return render(request,'customer/moredetail-vehicle.html',context=mydict)
+    if request.method == 'POST':
+        applyData =  ApplyPolicy()
+        applyData.marque =  request.POST['marque']
+        applyData.platenumnber = request.POST['platenumber']
+        applyData.yearofmanufacture =  request.POST['yearofmanufacture']
+        applyData.insuredvalue =  request.POST['insuredvalue']
+        applyData.territoriallimit = request.POST['territoriallimit']
+        applyData.deductible = request.POST['deductible']
+        applyData.model = request.POST['model']
+        applyData.numberofchasis = request.POST['numberofchasis']
+        applyData.seatcapacity = request.POST['seatcapacity']
+        applyData.typeofvehicle = request.POST['typeofvehicle']
+        applyData.occupantcover = request.POST['occupantcovered']
+        applyData.policystatus = request.POST['policystatus']
+        # applyData.applyid = Policy.objects.get(id=id)
+    return render(request,'customer/moredetail-vehicle.html',context)
 
 def moredetail_medical(request):
     userForm=forms.CustomerUserForm()
@@ -153,6 +165,3 @@ def moredetail_agriculture(request):
     customerForm=forms.CustomerForm()
     mydict={'userForm':userForm,'customerForm':customerForm}
     return render(request,'customer/moredetails_agriculture.html',context=mydict)
-
-
-

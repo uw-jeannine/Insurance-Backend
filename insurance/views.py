@@ -266,6 +266,7 @@ def contactus_view(request):
 
 def tracking(request):
     return render(request,'tracking.html')
+
 def vignette(request):
     return render(request,'vignette.html')
 

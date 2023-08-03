@@ -32,7 +32,7 @@
 
 <br><br><br>
 <h3 style="text-align: center;color: rgb(49, 38, 38);">Required information for this policy</h3>
-<form method="POST" autocomplete="off" enctype="multipart/form-data" class="m-4">
+<form method="POST" autocomplete="off" enctype="multipart/form-data" class="m-4" action="{% url 'moredetail-vehicle' %}">
   {% csrf_token %}
  
  
@@ -61,48 +61,48 @@
 <div class="form-row">
     <div class="form-group col-md-6">
         <label for="plate_no">Plate Number</label>
-        <input type="text" name="plate_no" class="form-control" placeholder="Plate Number">
+        <input type="text" name="platenumber" class="form-control" placeholder="Plate Number">
     </div>
     <div class="form-group col-md-6">
         <label for="no_of_chassis">Number of Chassis</label>
-        <input type="text" name="no_of_chassis" class="form-control" placeholder="Number of Chassis">
+        <input type="text" name="numberofchasis" class="form-control" placeholder="Number of Chassis">
     </div>
 </div>
 
 <div class="form-row">
     <div class="form-group col-md-6">
         <label for="year_of_manufacture">Year of Manufacture</label>
-        <select name="year_of_manufacture" class="form-control">
+        <select name="yearofmanufacture" class="form-control">
             {% for year in years %}
-                    <option value="{{ year }}">{{ year }}</option>
+                    <option value="{{ year }}">{{year}}</option>
                 {% endfor %}
         </select>
     </div>
     <div class="form-group col-md-6">
         <label for="seat_capacity">Seat Capacity</label>
-        <input type="text" name="seat_capacity" class="form-control" placeholder="Seat Capacity">
+        <input type="text" name="seatcapacity" class="form-control" placeholder="Seat Capacity">
     </div>
 </div>
 
 <div class="form-row">
     <div class="form-group col-md-6">
         <label for="insured_value">Insured Value</label>
-        <input type="text" name="insured_value" class="form-control" placeholder="Insured Value">
+        <input type="text" name="insuredvalue" class="form-control" placeholder="Insured Value">
     </div>
     <div class="form-group col-md-6">
         <label for="type_of_vehicle">Type of Vehicle</label>
-        <input type="text" name="type_of_vehicle" class="form-control" placeholder="Type of Vehicle">
+        <input type="text" name="typeofvehicle" class="form-control" placeholder="Type of Vehicle">
     </div>
 </div>
 
 <div class="form-row">
     <div class="form-group col-md-6">
         <label for="territorial_limit">Territorial Limit</label>
-        <input type="text" name="territorial_limit" class="form-control" placeholder="Territorial Limit">
+        <input type="text" name="territoriallimit" class="form-control" placeholder="Territorial Limit">
     </div>
     <div class="form-group col-md-6">
         <label for="occupants_covered">Occupants Covered</label>
-        <input type="text" name="occupants_covered" class="form-control" placeholder="Occupants Covered">
+        <input type="text" name="occupantcovered" class="form-control" placeholder="Occupants Covered">
     </div>
 </div>
 
@@ -113,7 +113,7 @@
     </div>
     <div class="form-group col-md-6">
         <label for="policy_status">Policy Status</label>
-        <input type="text" name="policy_status" class="form-control" placeholder="Policy Status">
+        <input type="text" name="policystatus" class="form-control" placeholder="Policy Status">
     </div>
 </div>
 

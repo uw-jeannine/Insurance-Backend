@@ -36,3 +36,22 @@ class Submit_claim(models.Model):
 
     def __str__(self):
         return self.name
+    
+class ApplyPolicy(models.Model):
+    marque =  models.CharField(max_length=255,null=True,blank=True)
+    platenumnber =  models.CharField(max_length=255,null=True,blank=True)
+    yearofmanufacture =  models.CharField(max_length=255,null=True,blank=True)
+    insuredvalue = models.CharField(max_length=255,null=True,blank=True)
+    territoriallimit = models.CharField(max_length=255,null=True,blank=True)
+    deductible = models.CharField(max_length=255,null=True,blank=True)
+    model = models.CharField(max_length=255,null=True,blank=True)
+    numberofchasis =  models.CharField(max_length=255,null=True,blank=True)
+    seatcapacity = models.CharField(max_length=255,null=True,blank=True)
+    typeofvehicle = models.CharField(max_length=255,null=True,blank=True)
+    occupantcover =  models.CharField(max_length=255,null=True,blank=True)
+    policystatus = models.CharField(max_length=255,null=True,blank=True)
+    applyid = models.ForeignKey('insurance.Policy', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.marque
+
