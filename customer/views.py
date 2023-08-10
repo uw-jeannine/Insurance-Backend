@@ -14,7 +14,7 @@ from django.contrib.auth.models import User
 from customer.models import *
 from django.contrib import messages
 from insurance.models import Policy
-from .forms import PolicyAgricultureForm, PolicyPropertyForm, PolicyMedicalForm
+# from .forms import PolicyAgricultureForm, PolicyPropertyForm, PolicyMedicalForm
 
 def index_home(request):
     return render(request,'index.html')
@@ -169,32 +169,32 @@ def moredetail_agriculture(request):
     return render(request,'customer/moredetails_agriculture.html',context=mydict)
 
 
-def apply_policy_agriculture(request):
-    if request.method == 'POST':
-        form = PolicyAgricultureForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('success_url')  
-    else:
-        form = PolicyAgricultureForm()
-    return render(request, 'customer/moredetails_agriculture.html', {'form': form})
+# def apply_policy_agriculture(request):
+#     if request.method == 'POST':
+#         form = PolicyAgricultureForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('success_url')  
+#     else:
+#         form = PolicyAgricultureForm()
+#     return render(request, 'customer/moredetails_agriculture.html', {'form': form})
 
-def apply_policy_property(request):
-    if request.method == 'POST':
-        form = PolicyPropertyForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('success_url')  
-    else:
-        form = PolicyPropertyForm()
-    return render(request, 'customer/moredetails_fire.html', {'form': form})
+# def apply_policy_property(request):
+#     if request.method == 'POST':
+#         form = PolicyPropertyForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('success_url')  
+#     else:
+#         form = PolicyPropertyForm()
+#     return render(request, 'customer/moredetails_fire.html', {'form': form})
 
-def apply_policy_medical(request):
-    if request.method == 'POST':
-        form = PolicyMedicalForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('success_url') 
-    else:
-        form = PolicyMedicalForm()
-    return render(request, 'customer/moredetails-medial.html', {'form': form})
+# def apply_policy_medical(request):
+#     if request.method == 'POST':
+#         form = PolicyMedicalForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('success_url') 
+#     else:
+#         form = PolicyMedicalForm()
+#     return render(request, 'customer/moredetails-medial.html', {'form': form})
