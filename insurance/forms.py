@@ -19,14 +19,14 @@ from .models import Policy
 class PolicyForm(forms.ModelForm):
     category = forms.ModelChoiceField(queryset=models.Category.objects.all(), empty_label="Category Name", to_field_name="id", widget=forms.Select(attrs={'class': 'form-control', 'placeholder': 'Life Insurance'}))
     policy_name = forms.CharField(max_length=200, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Jeevan Surbhi'}))
-    premium = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': '5000'}))
+    premium_amount = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': '5000'}))
     deductible = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': '5000'}))
     coverage_amount = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': '5000'}))
     tenure = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': '12'}))
 
     class Meta:
         model = Policy
-        fields = ['category', 'policy_name', 'premium', 'deductible', 'coverage_amount', 'tenure']
+        fields = ['category', 'policy_name', 'premium_amount', 'deductible', 'coverage_amount', 'tenure']
 
 
 class QuestionForm(forms.ModelForm):

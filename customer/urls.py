@@ -25,4 +25,6 @@ urlpatterns = [
     path('moredetail-fire', views.moredetail_fire,name='moredetail-fire'),
     path('moredetail-agriculture', views.moredetail_agriculture,name='moredetail-agriculture'),
 
+    path('detailapply/<int:id>',views.detailapply,name='detailapply'),
+
 ]

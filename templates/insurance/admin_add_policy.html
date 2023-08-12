@@ -21,23 +21,23 @@
 <form method="POST" autocomplete="off" style="margin: 100px; margin-top: 0px;">
   {% csrf_token %}
   <div class="form-group">
-      <label for="category">Category</label>
-      {% render_field policyForm.category class="form-control" placeholder="Life Insurance" %}
+    <label for="category">Category</label>
+    {% render_field policyForm.category class="form-control" placeholder="Life Insurance" %}
 
-      <label for="policy_name">Policy Name</label>
-      {% render_field policyForm.policy_name class="form-control" placeholder="Jeevan Surbhi" %}
+    <label for="policy_name">Policy Name</label>
+    {% render_field policyForm.policy_name class="form-control" placeholder="Jeevan Surbhi" %}
 
-      <label for="premium">Premium Amount</label>
-      {% render_field policyForm.premium_amount class="form-control" placeholder="5000" %}
+    <label for="premium">Premium Amount</label>
+    {% render_field policyForm.premium_amount class="form-control" placeholder="5000" %}
 
-      <label for="deductible">Deductible Amount</label>
-      {% render_field policyForm.deductible class="form-control" placeholder="5000" %}
+    <label for="deductible">Deductible Amount</label>
+    {% render_field policyForm.deductible class="form-control" placeholder="5000" %}
 
-      <label for="coverage_amount">Coverage Amount</label>
-      {% render_field policyForm.coverage_amount class="form-control" placeholder="5000" %}
+    <label for="coverage_amount">Coverage Amount</label>
+    {% render_field policyForm.coverage_amount class="form-control" placeholder="5000" %}
 
-      <label for="tenure">Period</label>
-      {% render_field policyForm.tenure class="form-control" placeholder="12" %}
+    <label for="tenure">Period</label>
+    {% render_field policyForm.tenure class="form-control" placeholder="12" %}
   </div>
 
   <br>

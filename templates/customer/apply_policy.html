@@ -67,7 +67,6 @@
           <th> Tenure</th>
           <th> Creation Date</th>
           <th> Apply</th>
-          
         </tr>
       </thead>
       {% for t in policies %}
@@ -79,6 +78,7 @@
         <td> {{t.premium}}</td>
         <td> {{t.tenure}}</td>
         <td>{{t.creation_date}}</td>
+        <td> <a href="{% url 'detailapply' id=t.id %}"><button class="btn btn-primary">Apply now</button></a> </td>
       </tr>
       {% endfor %}
     </table>

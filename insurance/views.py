@@ -140,13 +140,11 @@ def admin_policy_view(request):
 
 def admin_add_policy_view(request):
     policyForm=forms.PolicyForm() 
-    
     if request.method=='POST':
         policyForm=forms.PolicyForm(request.POST)
         if policyForm.is_valid():
             categoryid = request.POST.get('category')
-            category = models.Category.objects.get(id=categoryid)
-            
+            category = models.Category.objects.get(id=categoryid) 
             policy = policyForm.save(commit=False)
             policy.category=category
             policy.save()

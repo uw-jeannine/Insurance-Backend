@@ -11,9 +11,9 @@ from django.core.mail import send_mail
 from insurance import models as CMODEL
 from insurance import forms as CFORM
 from django.contrib.auth.models import User
-from customer.models import *
+from customer.models import Customer
 from django.contrib import messages
-from insurance.models import Policy
+from insurance.models import Policy,Category
 # from .forms import PolicyAgricultureForm, PolicyPropertyForm, PolicyMedicalForm
 
 def index_home(request):
@@ -198,3 +198,12 @@ def moredetail_agriculture(request):
 #     else:
 #         form = PolicyMedicalForm()
 #     return render(request, 'customer/moredetails-medial.html', {'form': form})
+
+
+def detailapply(request,id):
+    recordselect = Category.objects.all()
+    context = {
+        'record': recordselect
+    }
+    print(recordselect)
+    return render(request, 'customer/detail.html',context)
