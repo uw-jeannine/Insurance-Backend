@@ -3,121 +3,134 @@
 {% block content %}
 
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <style>
-    a:link {
-      text-decoration: none;
-    }
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        a:link {
+            text-decoration: none;
+        }
 
-    label #sidebar_btn {
-      z-index: 1;
-      color: #fff;
-      position: fixed;
-      cursor: pointer;
-      left: 300px;
-      padding-left: 60px;
-      margin-top: 15px;
-      font-size: 20px;
+        label #sidebar_btn {
+            z-index: 1;
+            color: #fff;
+            position: fixed;
+            cursor: pointer;
+            left: 300px;
+            padding-left: 60px;
+            margin-top: 15px;
+            font-size: 20px;
 
-      transition: 0.5s;
-      transition-property: color;
-    }
-  </style>
+            transition: 0.5s;
+            transition-property: color;
+        }
+    </style>
 </head>
 
 <br><br><br>
 <h3 style="text-align: center;color: rgb(49, 38, 38);">Required information for this policy</h3>
-<form method="POST" autocomplete="off" enctype="multipart/form-data" class="m-4" action="{% url 'moredetail-vehicle' %}">
-  {% csrf_token %}
- 
- 
-   <!-- Fields for vehicle insurance -->
-   <div class="form-row">
-    <div class="form-group col-md-6">
-        <label for="marque">Marque</label>
-        <select name="marque" class="form-control">
-            <option value="TOYOTA">TOYOTA</option>
-            <option value="HONDA">HONDA</option>
-            <option value="YAMAHA">YAMAHA</option>
-            <option value="TVS">TVS</option>
-            <option value="MERCEDES">MERCEDES</option>
-            <option value="VW">VW</option>
-            <option value="VWG">VWG</option>
-            <option value="KIA">KIA</option>
-            <option value="HYUNDAI">HYUNDAI</option>
-        </select>
-    </div>
-    <div class="form-group col-md-6">
-        <label for="model">Model</label>
-        <input type="text" name="model" class="form-control" placeholder="Model">
-    </div>
-</div>
+<form method="POST" autocomplete="off" enctype="multipart/form-data" class="m-5 "
+    action="{% url 'moredetail-vehicle' %}">
+    {% csrf_token %}
 
-<div class="form-row">
-    <div class="form-group col-md-6">
-        <label for="plate_no">Plate Number</label>
-        <input type="text" name="platenumber" class="form-control" placeholder="Plate Number">
-    </div>
-    <div class="form-group col-md-6">
-        <label for="no_of_chassis">Number of Chassis</label>
-        <input type="text" name="numberofchasis" class="form-control" placeholder="Number of Chassis">
-    </div>
-</div>
 
-<div class="form-row">
-    <div class="form-group col-md-6">
-        <label for="year_of_manufacture">Year of Manufacture</label>
-        <select name="yearofmanufacture" class="form-control">
-            {% for year in years %}
-                    <option value="{{ year }}">{{year}}</option>
+    <!-- Fields for vehicle insurance -->
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="marque">Marque</label>
+            <select name="marque" class="form-control">
+                <option value="TOYOTA">TOYOTA</option>
+                <option value="HONDA">HONDA</option>
+                <option value="YAMAHA">YAMAHA</option>
+                <option value="TVS">TVS</option>
+                <option value="MERCEDES">MERCEDES</option>
+                <option value="VW">VW</option>
+                <option value="VWG">VWG</option>
+                <option value="KIA">KIA</option>
+                <option value="HYUNDAI">HYUNDAI</option>
+            </select>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="model">Model</label>
+            <input type="text" name="model" class="form-control" placeholder="Model">
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="plate_no">Plate Number</label>
+            <input type="text" name="platenumber" class="form-control" placeholder="Plate Number">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="no_of_chassis">Number of Chassis</label>
+            <input type="text" name="numberofchasis" class="form-control" placeholder="Number of Chassis">
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="year_of_manufacture">Year of Manufacture</label>
+            <select name="yearofmanufacture" class="form-control">
+                {% for year in years %}
+                <option value="{{ year }}">{{year}}</option>
                 {% endfor %}
-        </select>
+            </select>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="seat_capacity">Seat Capacity</label>
+            <input type="text" name="seatcapacity" class="form-control" placeholder="Seat Capacity">
+        </div>
     </div>
-    <div class="form-group col-md-6">
-        <label for="seat_capacity">Seat Capacity</label>
-        <input type="text" name="seatcapacity" class="form-control" placeholder="Seat Capacity">
-    </div>
-</div>
 
-<div class="form-row">
-    <div class="form-group col-md-6">
-        <label for="insured_value">Insured Value</label>
-        <input type="text" name="insuredvalue" class="form-control" placeholder="Insured Value">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="insured_value">Insured Value</label>
+            <input type="text" name="insuredvalue" class="form-control" placeholder="Insured Value">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="type_of_vehicle">Type of Vehicle</label>
+            <input type="text" name="typeofvehicle" class="form-control" placeholder="Type of Vehicle">
+        </div>
     </div>
-    <div class="form-group col-md-6">
-        <label for="type_of_vehicle">Type of Vehicle</label>
-        <input type="text" name="typeofvehicle" class="form-control" placeholder="Type of Vehicle">
-    </div>
-</div>
 
-<div class="form-row">
-    <div class="form-group col-md-6">
-        <label for="territorial_limit">Territorial Limit</label>
-        <input type="text" name="territoriallimit" class="form-control" placeholder="Territorial Limit">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="territorial_limit">Territorial Limit</label>
+            <input type="text" name="territoriallimit" class="form-control" placeholder="Territorial Limit">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="occupants_covered">Occupants Covered</label>
+            <input type="text" name="occupantcovered" class="form-control" placeholder="Occupants Covered">
+        </div>
     </div>
-    <div class="form-group col-md-6">
-        <label for="occupants_covered">Occupants Covered</label>
-        <input type="text" name="occupantcovered" class="form-control" placeholder="Occupants Covered">
-    </div>
-</div>
 
-<div class="form-row">
-    <div class="form-group col-md-6">
-        <label for="deductible">Deductible</label>
-        <input type="text" name="deductible" class="form-control" placeholder="Deductible">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="deductible">Deductible</label>
+            <input type="text" name="deductible" class="form-control" placeholder="Deductible">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="policy_status">Policy Status</label>
+            <input type="text" name="policystatus" class="form-control" placeholder="Policy Status">
+        </div>
     </div>
-    <div class="form-group col-md-6">
-        <label for="policy_status">Policy Status</label>
-        <input type="text" name="policystatus" class="form-control" placeholder="Policy Status">
+    <div class="form-row">
+        <div class="form-group">
+            <label for="year_of_manufacture">Policy needed</label>
+            <select name="policyapplied" class="form-control">
+                <option selected>Select a policy</option>
+                {% for policydata in policy %}
+                        <option value="{{policydata.id}}">{{ policydata.policy_name }}</option>
+                    {% endfor %}
+            </select>
+        </div>
     </div>
-</div>
-
-<button type="submit" class="btn btn-primary ml-5">Apply</button>
+    <button type="submit" class="btn btn-primary ml-5">Apply</button>
 </form>
 
 

@@ -52,8 +52,7 @@ class ApplyPolicyVehicle(models.Model):
     policystatus = models.CharField(max_length=255,null=True,blank=True)
     applyid = models.ForeignKey('insurance.Policy', on_delete=models.CASCADE)
 
-    def __str__(self):
-        return self.marque
+    
 
 
 # class ApplyPolicyAgriculture(models.Model):

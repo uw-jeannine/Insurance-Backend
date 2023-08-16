@@ -11,7 +11,7 @@ from django.core.mail import send_mail
 from insurance import models as CMODEL
 from insurance import forms as CFORM
 from django.contrib.auth.models import User
-from customer.models import Customer
+from customer.models import Customer,ApplyPolicyVehicle
 from django.contrib import messages
 from insurance.models import Policy,Category
 # from .forms import PolicyAgricultureForm, PolicyPropertyForm, PolicyMedicalForm
@@ -122,6 +122,7 @@ def submit_claim_view(request):
 def claim_history_view(request):
     return render(request,'customer/claim_history.html')
 
+
 def moredetail_vehicle(request):
     userForm=forms.CustomerUserForm()
     customerForm=forms.CustomerForm()
@@ -129,8 +130,10 @@ def moredetail_vehicle(request):
     years = list(range(1950, 2023))
     context = {
         'years': years,
+        'policy':Policy.objects.all()
        
     }
+    
     if request.method == 'POST':
         applyData =  ApplyPolicyVehicle()
         applyData.marque =  request.POST['marque']
@@ -145,7 +148,9 @@ def moredetail_vehicle(request):
         applyData.typeofvehicle = request.POST['typeofvehicle']
         applyData.occupantcover = request.POST['occupantcovered']
         applyData.policystatus = request.POST['policystatus']
-        # applyData.applyid = Policy.objects.get(id=id)
+        policy_instance,created = Policy.objects.get_or_create(id=request.POST['policyapplied'])
+        applyData.applyid = policy_instance
+        applyData.save()
     return render(request,'customer/moredetail-vehicle.html',context)
 
 def moredetail_medical(request):
@@ -201,7 +206,7 @@ def moredetail_agriculture(request):
 
 
 def detailapply(request,id):
-    recordselect = Category.objects.all()
+    recordselect = Policy.objects.all()
     context = {
         'record': recordselect
     }
