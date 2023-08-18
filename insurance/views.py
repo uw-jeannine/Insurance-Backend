@@ -57,8 +57,6 @@ def admin_view_customer_view(request):
     customers= CMODEL.Customer.objects.all()
     return render(request,'insurance/admin_view_customer.html',{'customers':customers})
 
-
-
 @login_required(login_url='adminlogin')
 def update_customer_view(request,pk):
     customer=CMODEL.Customer.objects.get(id=pk)
@@ -135,7 +133,13 @@ def update_category_view(request,pk):
   
 
 def admin_policy_view(request):
-    return render(request,'insurance/admin_policy.html')
+     dict={
+        'total_policy_holder':models.PolicyRecord.objects.all().count(),
+        'approved_policy_holder':models.PolicyRecord.objects.all().filter(status='Approved').count(),
+        'disapproved_policy_holder':models.PolicyRecord.objects.all().filter(status='Disapproved').count(),
+        'waiting_policy_holder':models.PolicyRecord.objects.all().filter(status='Pending').count(),
+    }
+     return render(request,'insurance/admin_policy.html',context=dict)
 
 
 def admin_add_policy_view(request):

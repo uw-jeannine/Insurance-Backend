@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect,reverse
+from django.shortcuts import render,redirect,reverse, HttpResponse
 from . import forms,models
 from django.db.models import Sum
 from django.contrib.auth.models import Group
@@ -152,13 +152,13 @@ def moredetail_vehicle(request, id):
         'policy':Policy.objects.get(id=id)
        
     }
-    return render(request,'customer/moredetail-vehicle.html',context)
+    return redirect('history')
 
 def moredetail_medical(request):
     userForm=forms.CustomerUserForm()
     customerForm=forms.CustomerForm()
     mydict={'userForm':userForm,'customerForm':customerForm}
-    return render(request,'customer/moredetails-medial.html',context=mydict)
+    return render(request,'customer/moredetails-medical.html',context=mydict)
 
 
 def moredetail_fire(request):
@@ -215,8 +215,17 @@ def detailapply(request,id):
     if category == 'Vehicle insurance':
         # Render the motor category form
         return render(request, 'customer/moredetail-vehicle.html', context={"years": years, "policy": recordselect})
+    elif category == 'Agriculture Insurance':
+        # Render the agriculture category form
+        return render(request, 'customer/moredetails_agriculture.html', {'policy': recordselect})
+    elif category == 'Medical Insurance':
+        # Render the medical category form
+        return render(request, 'customer/moredetails-medical.html', {'policy': recordselect})
+    elif category == 'Fire Insurance':
+        # Render the fire category form
+        return render(request, 'customer/moredetails_fire.html', {'policy': recordselect})
     else:
-        return render(request, 'customer/moredetails-medial.html')
-    
+        # Handle the case where the category is not recognized
+        return HttpResponse("Invalid policy category")
     
     
