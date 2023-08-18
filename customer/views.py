@@ -11,9 +11,9 @@ from django.core.mail import send_mail
 from insurance import models as CMODEL
 from insurance import forms as CFORM
 from django.contrib.auth.models import User
-from customer.models import Customer,ApplyPolicyVehicle
+from customer.models import Customer,ApplyPolicyVehicle, Submit_claim
 from django.contrib import messages
-from insurance.models import Policy,Category
+from insurance.models import Policy,Category, PolicyRecord
 # from .forms import PolicyAgricultureForm, PolicyPropertyForm, PolicyMedicalForm
 
 def index_home(request):
@@ -50,11 +50,13 @@ def is_customer(user):
 
 @login_required(login_url='customerlogin')
 def customer_dashboard_view(request):
+    record = PolicyRecord.objects.filter(customer__user=request.user).count()
+    print(record)
     dict={
         'customer':models.Customer.objects.get(user_id=request.user.id),
         'available_policy':CMODEL.Policy.objects.all().count(),
-        'applied_policy':CMODEL.PolicyRecord.objects.all().filter(customer=models.Customer.objects.get(user_id=request.user.id)).count(),
-        'total_category':CMODEL.Category.objects.all().count(),
+        'applied_policy':record,
+        'total_category':Category.objects.all().count(),
         'total_question':CMODEL.Question.objects.all().filter(customer=models.Customer.objects.get(user_id=request.user.id)).count(),
 
     }
@@ -76,17 +78,15 @@ def apply_view(request,pk):
 
 def history_view(request):
     customer = models.Customer.objects.get(user_id=request.user.id)
-    policies = CMODEL.PolicyRecord.objects.all().filter(customer=customer)
+    policies = PolicyRecord.objects.filter(customer=customer).all()
     return render(request,'customer/history.html',{'policies':policies,'customer':customer})
 
 def ask_question_view(request):
     customer = models.Customer.objects.get(user_id=request.user.id)
     questionForm=CFORM.QuestionForm() 
-    
     if request.method=='POST':
         questionForm=CFORM.QuestionForm(request.POST)
         if questionForm.is_valid():
-            
             question = questionForm.save(commit=False)
             question.customer=customer
             question.save()
@@ -123,17 +123,8 @@ def claim_history_view(request):
     return render(request,'customer/claim_history.html')
 
 
-def moredetail_vehicle(request):
-    userForm=forms.CustomerUserForm()
-    customerForm=forms.CustomerForm()
-    mydict={'userForm':userForm,'customerForm':customerForm}
+def moredetail_vehicle(request, id):
     years = list(range(1950, 2023))
-    context = {
-        'years': years,
-        'policy':Policy.objects.all()
-       
-    }
-    
     if request.method == 'POST':
         applyData =  ApplyPolicyVehicle()
         applyData.marque =  request.POST['marque']
@@ -148,9 +139,19 @@ def moredetail_vehicle(request):
         applyData.typeofvehicle = request.POST['typeofvehicle']
         applyData.occupantcover = request.POST['occupantcovered']
         applyData.policystatus = request.POST['policystatus']
-        policy_instance,created = Policy.objects.get_or_create(id=request.POST['policyapplied'])
+        policy_instance = Policy.objects.get(id=id)
         applyData.applyid = policy_instance
         applyData.save()
+
+        customer = Customer.objects.get(user=request.user)  # Adjust this based on your logic
+        policy = Policy.objects.get(id=id)
+        policy_record = PolicyRecord.objects.create(customer=customer, Policy=policy, status='Pending')
+
+    context = {
+        'years': years,
+        'policy':Policy.objects.get(id=id)
+       
+    }
     return render(request,'customer/moredetail-vehicle.html',context)
 
 def moredetail_medical(request):
@@ -206,9 +207,16 @@ def moredetail_agriculture(request):
 
 
 def detailapply(request,id):
-    recordselect = Policy.objects.all()
-    context = {
-        'record': recordselect
-    }
-    print(recordselect)
-    return render(request, 'customer/detail.html',context)
+    recordselect = Policy.objects.get(id=id)
+    category = recordselect.category.category_name
+    years = list(range(1950, 2023))
+    print(category)
+    
+    if category == 'Vehicle insurance':
+        # Render the motor category form
+        return render(request, 'customer/moredetail-vehicle.html', context={"years": years, "policy": recordselect})
+    else:
+        return render(request, 'customer/moredetails-medial.html')
+    
+    
+    

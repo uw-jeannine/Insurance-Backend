@@ -11,7 +11,7 @@ urlpatterns = [
     path('customerlogin', LoginView.as_view(template_name='insurance/adminlogin.html'),name='customerlogin'),
 
     path('apply-policy', views.apply_policy_view,name='apply-policy'),
-    path('apply/<int:pk>', views.apply_view,name='apply'),
+    path('apply/<str:pk>', views.apply_view,name='apply'),
     path('history', views.history_view,name='history'),
 
     path('ask-question', views.ask_question_view,name='ask-question'),
@@ -20,7 +20,7 @@ urlpatterns = [
      path('submit-claim', views.submit_claim_view,name='submit-claim'),
     path('claim-history', views.claim_history_view,name='claim-history'),
 
-    path('moredetail-vehicle', views.moredetail_vehicle,name='moredetail-vehicle'),
+    path('moredetail-vehicle/<int:id>/', views.moredetail_vehicle,name='moredetail-vehicle'),
     path('moredetail-medical', views.moredetail_medical,name='moredetail-medical'),
     path('moredetail-fire', views.moredetail_fire,name='moredetail-fire'),
     path('moredetail-agriculture', views.moredetail_agriculture,name='moredetail-agriculture'),

@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from customer.models import Customer
 
 class Category(models.Model):
-    category_name =models.CharField(max_length=20)
+    category_name =models.CharField(max_length=30)
     creation_date =models.DateField(auto_now=True)
     def __str__(self):
         return self.category_name
@@ -25,7 +25,7 @@ class PolicyRecord(models.Model):
     status = models.CharField(max_length=100,default='Pending')
     creation_date =models.DateField(auto_now=True)
     def __str__(self):
-        return self.policy
+        return self.Policy.policy_name
 
 class Question(models.Model):
     customer= models.ForeignKey(Customer, on_delete=models.CASCADE)

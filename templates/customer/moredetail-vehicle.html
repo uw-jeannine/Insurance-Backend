@@ -35,7 +35,7 @@
 <br><br><br>
 <h3 style="text-align: center;color: rgb(49, 38, 38);">Required information for this policy</h3>
 <form method="POST" autocomplete="off" enctype="multipart/form-data" class="m-5 "
-    action="{% url 'moredetail-vehicle' %}">
+    action="{% url 'moredetail-vehicle' policy.id %}">
     {% csrf_token %}
 
 
@@ -119,17 +119,7 @@
             <input type="text" name="policystatus" class="form-control" placeholder="Policy Status">
         </div>
     </div>
-    <div class="form-row">
-        <div class="form-group">
-            <label for="year_of_manufacture">Policy needed</label>
-            <select name="policyapplied" class="form-control">
-                <option selected>Select a policy</option>
-                {% for policydata in policy %}
-                        <option value="{{policydata.id}}">{{ policydata.policy_name }}</option>
-                    {% endfor %}
-            </select>
-        </div>
-    </div>
+    
     <button type="submit" class="btn btn-primary ml-5">Apply</button>
 </form>
 
