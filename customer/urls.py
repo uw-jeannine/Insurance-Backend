@@ -9,6 +9,7 @@ urlpatterns = [
     path('customersignup', views.customer_signup_view,name='customersignup'),
     path('customer-dashboard', views.customer_dashboard_view,name='customer-dashboard'),
     path('customerlogin', LoginView.as_view(template_name='insurance/adminlogin.html'),name='customerlogin'),
+    path('customer/tracking_number',views.tracking,name='tracking_number'),
 
     path('apply-policy', views.apply_policy_view,name='apply-policy'),
     path('apply/<str:pk>', views.apply_view,name='apply'),

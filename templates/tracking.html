@@ -17,8 +17,8 @@
     <div class="col-md-8 col-md-offset-2">
         <div class="form-box">
             <h2><b>Insurance Tracking</b></h2>
-            <form class="form-content" method="POST" enctype="multipart/form-data" action="feedbackresult.php">
-
+            <form class="form-content" method="post" action="{% url 'tracking' %}">
+                {% csrf_token %}
                 <input type="text" name="tnumber" placeholder="Tracking Number" required />
                 <select name="type" id="Medical insurance type">
 
@@ -37,6 +37,15 @@
             </form>
         </div>
 
+        <div>
+            <table>
+                {% for data in datas %}
+
+                <tr>{{data.marque}}</tr>
+
+                {% endfor %}
+            </table>
+        </div>
 
     </div>
 </div>

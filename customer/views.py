@@ -14,7 +14,8 @@ from django.contrib.auth.models import User
 from customer.models import Customer,ApplyPolicyVehicle, Submit_claim,ApplyPolicyAgriculture
 from django.contrib import messages
 from insurance.models import Policy,Category, PolicyRecord
-# from .forms import PolicyAgricultureForm, PolicyPropertyForm, PolicyMedicalForm
+import random
+
 
 def index_home(request):
     return render(request,'index.html')
@@ -141,6 +142,8 @@ def moredetail_vehicle(request, id):
         applyData.policystatus = 'Pending'
         policy_instance = Policy.objects.get(id=id)
         applyData.applyid = policy_instance
+        applyData.tracking_number = random.randint(1,9999999)
+
         applyData.save()
 
       
@@ -188,6 +191,7 @@ def moredetail_agriculture(request,id):
         agri.contact_number = request.POST.get('contactnumber')
         policy_instance = Policy.objects.get(id=id)
         agri.appliedid = policy_instance
+        agri.tracking_number = random.randint(1,9999999)
 
         agri.save()
 
@@ -226,6 +230,21 @@ def moredetail_agriculture(request,id):
 #     else:
 #         form = PolicyMedicalForm()
 #     return render(request, 'customer/moredetails-medial.html', {'form': form})
+
+
+def tracking(request):
+    if request.method == 'POST':
+        getdata =  request.POST.get('type')
+        trackingnumber = request.POST.get('tnumber')
+        if getdata == 'car':
+            print(getdata)
+            print(trackingnumber)
+            records = ApplyPolicyVehicle.objects.filter(tracking_number=trackingnumber).all()
+            print(records)
+            return render(request, 'customer/tracking_number.html', {'records': records})
+        return render(request, 'customer/tracking_number.html')
+  
+    return render(request,'customer/tracking_number.html')
 
 
 def detailapply(request,id):

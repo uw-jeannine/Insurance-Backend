@@ -11,7 +11,6 @@ urlpatterns = [
     path('',views.home_view,name='home'),
     
     path('logout', LogoutView.as_view(template_name='insurance/logout.html'),name='logout'),
-    path('tracking', views.tracking),
     path('products', views.products,name='products'),
     path('vignette', views.vignette,name='vignette'),
     path('contactus', views.contactus_view),

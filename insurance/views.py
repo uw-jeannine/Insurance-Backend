@@ -12,6 +12,8 @@ from django.contrib.auth.models import User
 from customer import models as CMODEL
 from customer import forms as CFORM
 
+from customer.models import ApplyPolicyAgriculture,ApplyPolicyVehicle,ApplyPolicyMedical
+
 def home_view(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect('afterlogin')  
@@ -266,11 +268,11 @@ def contactus_view(request):
             return render(request, 'insurance/contactussuccess.html')
     return render(request, 'insurance/contactus.html', {'form':sub})
 
-def tracking(request):
-    return render(request,'tracking.html')
+
 
 def vignette(request):
     return render(request,'vignette.html')
 
 def products(request):
     return render(request,'products.html')
+

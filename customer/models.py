@@ -53,6 +53,7 @@ class ApplyPolicyVehicle(models.Model):
     applyid = models.ForeignKey('insurance.Policy', on_delete=models.CASCADE)
     tracking_number = models.CharField(max_length=255,null=True, blank=True)
 
+
     
 
 
@@ -72,6 +73,8 @@ class ApplyPolicyAgriculture(models.Model):
     location = models.CharField(max_length=255, null=True, blank=True)
     contact_number = models.CharField(max_length=255, null=True, blank=True)
     appliedid = models.ForeignKey('insurance.Policy', on_delete=models.CASCADE)
+    tracking_number = models.CharField(max_length=255,null=True, blank=True)
+
 
     # Add the digital signature field here as described in the previous response
 
@@ -92,6 +95,8 @@ class ApplyPolicyProperty(models.Model):
     construction_type = models.CharField(max_length=255, null=True, blank=True)
     property_value = models.CharField(max_length=255, null=True, blank=True)
     insurance_coverage = models.CharField(max_length=255, null=True, blank=True)
+    tracking_number = models.CharField(max_length=255,null=True, blank=True)
+
 
     # Add the digital signature field here as described in the previous response
 
@@ -112,6 +117,9 @@ class ApplyPolicyMedical(models.Model):
     insured_person_age = models.CharField(max_length=255, null=True, blank=True)
     insured_person_gender = models.CharField(max_length=255, null=True, blank=True)
     insured_person_address = models.CharField(max_length=255, null=True, blank=True)
+    tracking_number = models.CharField(max_length=255,null=True, blank=True)
+
+
 
 
     def __str__(self):
