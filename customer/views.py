@@ -11,7 +11,7 @@ from django.core.mail import send_mail
 from insurance import models as CMODEL
 from insurance import forms as CFORM
 from django.contrib.auth.models import User
-from customer.models import Customer,ApplyPolicyVehicle, Submit_claim
+from customer.models import Customer,ApplyPolicyVehicle, Submit_claim,ApplyPolicyAgriculture
 from django.contrib import messages
 from insurance.models import Policy,Category, PolicyRecord
 # from .forms import PolicyAgricultureForm, PolicyPropertyForm, PolicyMedicalForm
@@ -138,14 +138,12 @@ def moredetail_vehicle(request, id):
         applyData.seatcapacity = request.POST['seatcapacity']
         applyData.typeofvehicle = request.POST['typeofvehicle']
         applyData.occupantcover = request.POST['occupantcovered']
-        applyData.policystatus = request.POST['policystatus']
+        applyData.policystatus = 'Pending'
         policy_instance = Policy.objects.get(id=id)
         applyData.applyid = policy_instance
         applyData.save()
 
-        customer = Customer.objects.get(user=request.user)  # Adjust this based on your logic
-        policy = Policy.objects.get(id=id)
-        policy_record = PolicyRecord.objects.create(customer=customer, Policy=policy, status='Pending')
+      
 
     context = {
         'years': years,
@@ -168,9 +166,33 @@ def moredetail_fire(request):
     return render(request,'customer/moredetails_fire.html',context=mydict)
 
 
-def moredetail_agriculture(request):
+def moredetail_agriculture(request,id):
     userForm=forms.CustomerUserForm()
     customerForm=forms.CustomerForm()
+
+    if request.method == 'POST':
+        agri = ApplyPolicyAgriculture()
+        agri.policy_number =  request.POST.get('policynumber')
+        agri.policy_start_date = request.POST.get('policystartdate')
+        agri.premium_amount= request.POST.get('premiumamount')
+        agri.policy_status = 'Pending'
+        agri.insured_person_name = request.POST.get('insuredpersonname')
+        agri.insured_person_gender = request.POST.get('insuredpersongender')
+        agri.location = request.POST.get('location')
+        agri.policy_holder_name = request.POST.get('policyholdername')
+        agri.policy_end_date = request.POST.get('policyenddate')
+        agri.coverage_amount = request.POST.get('coverageamount')
+        agri.crop_type = request.POST.get('croptype')
+        agri.insured_person_age = request.POST.get('insuredpersonage')
+        agri.plot_size = request.POST.get('plotsize')
+        agri.contact_number = request.POST.get('contactnumber')
+        policy_instance = Policy.objects.get(id=id)
+        agri.appliedid = policy_instance
+
+        agri.save()
+
+        return redirect('history')
+
     mydict={'userForm':userForm,'customerForm':customerForm}
     return render(request,'customer/moredetails_agriculture.html',context=mydict)
 
@@ -215,13 +237,14 @@ def detailapply(request,id):
     if category == 'Vehicle insurance':
         # Render the motor category form
         return render(request, 'customer/moredetail-vehicle.html', context={"years": years, "policy": recordselect})
-    elif category == 'Agriculture Insurance':
+    elif category == 'Agriculture insurance':
+
         # Render the agriculture category form
         return render(request, 'customer/moredetails_agriculture.html', {'policy': recordselect})
-    elif category == 'Medical Insurance':
+    elif category == 'Medical insurance':
         # Render the medical category form
         return render(request, 'customer/moredetails-medical.html', {'policy': recordselect})
-    elif category == 'Fire Insurance':
+    elif category == 'Fire insurance':
         # Render the fire category form
         return render(request, 'customer/moredetails_fire.html', {'policy': recordselect})
     else:

@@ -23,7 +23,7 @@ urlpatterns = [
     path('moredetail-vehicle/<int:id>/', views.moredetail_vehicle,name='moredetail-vehicle'),
     path('moredetail-medical', views.moredetail_medical,name='moredetail-medical'),
     path('moredetail-fire', views.moredetail_fire,name='moredetail-fire'),
-    path('moredetail-agriculture', views.moredetail_agriculture,name='moredetail-agriculture'),
+    path('moredetail-agriculture/<int:id>', views.moredetail_agriculture,name='moredetail-agriculture'),
 
     path('detailapply/<int:id>',views.detailapply,name='detailapply'),
 

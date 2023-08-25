@@ -37,73 +37,73 @@
 <br><br><br>
 <h3 style="text-align: center;color: rgb(49, 38, 38);">Required information for Agriculture Insurance Policy</h3>
 
-<form method="POST" autocomplete="off" enctype="multipart/form-data" class="m-4">
+<form method="POST" autocomplete="off" action="{% url 'moredetail-agriculture' policy.id %}" enctype="multipart/form-data" class="m-4">
     {% csrf_token %}
 
     <!-- Fields for agriculture insurance -->
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="policy_number">Policy Number</label>
-            <input type="text" name="policy_number" class="form-control" placeholder="Policy Number">
+            <input type="text" name="policynumber" class="form-control" placeholder="Policy Number">
         </div>
         <div class="form-group col-md-6">
             <label for="policy_holder_name">Policy Holder Name</label>
-            <input type="text" name="policy_holder_name" class="form-control" placeholder="Policy Holder Name">
+            <input type="text" name="policyholdername" class="form-control" placeholder="Policy Holder Name">
         </div>
     </div>
 
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="policy_start_date">Policy Start Date</label>
-            <input type="date" name="policy_start_date" class="form-control">
+            <input type="date" name="policystartdate" class="form-control">
         </div>
         <div class="form-group col-md-6">
             <label for="policy_end_date">Policy End Date</label>
-            <input type="date" name="policy_end_date" class="form-control">
+            <input type="date" name="policyenddate" class="form-control">
         </div>
     </div>
 
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="premium_amount">Premium Amount</label>
-            <input type="number" name="premium_amount" class="form-control" placeholder="Premium Amount">
+            <input type="number" name="premiumamount" class="form-control" placeholder="Premium Amount">
         </div>
         <div class="form-group col-md-6">
             <label for="coverage_amount">Coverage Amount</label>
-            <input type="number" name="coverage_amount" class="form-control" placeholder="Coverage Amount">
+            <input type="number" name="coverageamount" class="form-control" placeholder="Coverage Amount">
         </div>
     </div>
 
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="policy_status">Policy Status</label>
-            <input type="text" name="policy_status" class="form-control" placeholder="Policy Status">
+            <input type="text" name="policystatus" class="form-control" placeholder="Policy Status">
         </div>
         <div class="form-group col-md-6">
             <label for="crop_type">Crop Type</label>
-            <input type="text" name="crop_type" class="form-control" placeholder="Crop Type">
+            <input type="text" name="croptype" class="form-control" placeholder="Crop Type">
         </div>
     </div>
 
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="insured_person_name">Insured Person Name</label>
-            <input type="text" name="insured_person_name" class="form-control" placeholder="Insured Person Name">
+            <input type="text" name="insuredpersonname" class="form-control" placeholder="Insured Person Name">
         </div>
         <div class="form-group col-md-6">
             <label for="insured_person_age">Insured Person Age</label>
-            <input type="text" name="insured_person_age" class="form-control" placeholder="Insured Person Age">
+            <input type="text" name="insuredpersonage" class="form-control" placeholder="Insured Person Age">
         </div>
     </div>
 
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="insured_person_gender">Insured Person Gender</label>
-            <input type="text" name="insured_person_gender" class="form-control" placeholder="Insured Person Gender">
+            <input type="text" name="insuredpersongender" class="form-control" placeholder="Insured Person Gender">
         </div>
         <div class="form-group col-md-6">
             <label for="plot_size">Plot Size</label>
-            <input type="text" name="plot_size" class="form-control" placeholder="Plot Size">
+            <input type="text" name="plotsize" class="form-control" placeholder="Plot Size">
         </div>
     </div>
 
@@ -114,7 +114,7 @@
         </div>
         <div class="form-group col-md-6">
             <label for="contact_number">Contact Number</label>
-            <input type="text" name="contact_number" class="form-control" placeholder="Contact Number">
+            <input type="text" name="contactnumber" class="form-control" placeholder="Contact Number">
         </div>
     </div>
 
@@ -126,9 +126,8 @@
 I've added fields specific to an Agriculture Insurance policy, such as "Crop Type," "Plot Size," "Location," and
 "Contact Number." You can now capture the necessary information for an Agriculture Insurance policy using this form.
 Again, remember to include the digital signature field for verification as shown in the previous response.
-{% extends 'customer/customerbase.html' %}
-{% endblock content %}
 
 <br><br>
+{% endblock content %}
 
 
