@@ -63,7 +63,7 @@
                         <select name="type" id="Medical insurance type" class="form-control">
 
                             <option value="selections">Select insurance type </option>
-                            <option value="medical">Medical Insurance</option>
+                            <option value="agri">Agri Insurance</option>
                             <option value="car">Car Insurance</option>
                             <option value="motor">Motor Insurance</option>
                             <option value="travel">Travel Insurance</option>
@@ -105,8 +105,24 @@
 
                 {% endfor %}
             </table>
-            {% endif %}
+            {% elif recordsagri %}
 
+            <table  class="table table-hover" id="dev-table">
+                <tr>
+                    <th>policy_status</th>
+                    <th>policy_name</th>
+                </tr>
+                {% for data in recordsagri %}
+                <tr>
+                    <td>{{data.policy_status}}</td>
+                    <td>{{data.policy_holder_name}}</td>
+                    
+                </tr>
+
+                {% endfor %}
+            </table>
+
+            {% endif %}
         </div>
 
     </div>

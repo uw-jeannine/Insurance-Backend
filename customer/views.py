@@ -237,12 +237,13 @@ def tracking(request):
         getdata =  request.POST.get('type')
         trackingnumber = request.POST.get('tnumber')
         if getdata == 'car':
-            print(getdata)
-            print(trackingnumber)
             records = ApplyPolicyVehicle.objects.filter(tracking_number=trackingnumber).all()
-            print(records)
             return render(request, 'customer/tracking_number.html', {'records': records})
+        elif getdata == 'agri':
+            recordsagri = ApplyPolicyAgriculture.objects.filter(tracking_number=trackingnumber).all()
+            return render(request, 'customer/tracking_number.html', {'recordsagri': recordsagri})
         return render(request, 'customer/tracking_number.html')
+
   
     return render(request,'customer/tracking_number.html')
 
