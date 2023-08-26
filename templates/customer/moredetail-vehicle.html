@@ -34,10 +34,19 @@
 
 <br><br><br>
 <h3 style="text-align: center;color: rgb(49, 38, 38);">Required information for this policy</h3>
-<form method="POST" autocomplete="off" enctype="multipart/form-data" class="m-5 "
-    action="{% url 'moredetail-vehicle' policy.id %}">
-    {% csrf_token %}
 
+{% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong></strong> {{message}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}
+{% endif %}
+
+<form method="POST" autocomplete="off" enctype="multipart/form-data" class="m-5 "
+    action="{% url 'moredetail-vehicle' id=policy.id %}">
+    {% csrf_token %}
 
     <!-- Fields for vehicle insurance -->
     <div class="form-row">
@@ -106,15 +115,6 @@
         <div class="form-group col-md-6">
             <label for="occupants_covered">Occupants Covered</label>
             <input type="text" name="occupantcovered" class="form-control" placeholder="Occupants Covered">
-        </div>
-    </div>
-
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <label for="deductible">Deductible</label>
-            <input type="text" name="deductible" class="form-control" placeholder="Deductible">
-        </div>
-        <div class="form-group col-md-6">
         </div>
     </div>
     

@@ -13,7 +13,6 @@ class Policy(models.Model):
     policy_name = models.CharField(max_length=200)
     premium_amount = models.PositiveIntegerField()
     deductible = models.PositiveIntegerField()
-    coverage_amount = models.PositiveIntegerField()
     tenure = models.PositiveIntegerField()
     creation_date = models.DateField(auto_now=True)
     def __str__(self):

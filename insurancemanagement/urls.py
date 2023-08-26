@@ -16,6 +16,12 @@ urlpatterns = [
     path('contactus', views.contactus_view),
     path('afterlogin', views.afterlogin_view,name='afterlogin'),
 
+    path('view_policy', views.view_policy,name='view_policy'),
+    path('view_policy_vehicle', views.admin_view_vehicle,name='view_policy_vehicle'),
+    path('view_policy_agri', views.admin_view_agri,name='view_policy_agri'),
+
+
+
     
     path('adminlogin', LoginView.as_view(template_name='insurance/adminlogin.html'),name='adminlogin'),
     path('admin-dashboard', views.admin_dashboard_view,name='admin-dashboard'),
@@ -47,6 +53,9 @@ urlpatterns = [
     path('admin-view-waiting-policy-holder', views.admin_view_waiting_policy_holder_view,name='admin-view-waiting-policy-holder'),
     path('approve-request/<int:pk>', views.approve_request_view,name='approve-request'),
     path('reject-request/<int:pk>', views.disapprove_request_view,name='reject-request'),
+
+    path('approve-request-agri/<int:pk>', views.approve_request_view_agri,name='approve-request-agri'),
+    path('reject-request-agri/<int:pk>', views.disapprove_request_view_agri,name='reject-request-agri'),
 
     path('admin-question', views.admin_question_view,name='admin-question'),
     path('admin-claim', views.admin_claim_view,name='admin-claim'),

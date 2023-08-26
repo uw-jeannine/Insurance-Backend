@@ -15,6 +15,7 @@ from customer.models import Customer,ApplyPolicyVehicle, Submit_claim,ApplyPolic
 from django.contrib import messages
 from insurance.models import Policy,Category, PolicyRecord
 import random
+from django.contrib import messages
 
 
 def index_home(request):
@@ -106,7 +107,7 @@ def submit_claim_view(request):
         submit_claim.name =  request.POST['name']
         submit_claim.email = request.POST['email']
         submit_claim.phonenumber = request.POST['phonenumber']
-        submit_claim.policynumber = request.POST['claimtype'] 
+        submit_claim.claim_type = request.POST['claimtype'] 
         submit_claim.description = request.POST['description']
         submit_claim.dateofincident = request.POST['dateofincident']
         submit_claim.location = request.POST['location']
@@ -124,7 +125,7 @@ def claim_history_view(request):
     return render(request,'customer/claim_history.html')
 
 
-def moredetail_vehicle(request, id):
+def moredetail_vehicle(request,id):
     years = list(range(1950, 2023))
     if request.method == 'POST':
         applyData =  ApplyPolicyVehicle()
@@ -133,27 +134,22 @@ def moredetail_vehicle(request, id):
         applyData.yearofmanufacture =  request.POST['yearofmanufacture']
         applyData.insuredvalue =  request.POST['insuredvalue']
         applyData.territoriallimit = request.POST['territoriallimit']
-        applyData.deductible = request.POST['deductible']
         applyData.model = request.POST['model']
         applyData.numberofchasis = request.POST['numberofchasis']
         applyData.seatcapacity = request.POST['seatcapacity']
         applyData.typeofvehicle = request.POST['typeofvehicle']
         applyData.occupantcover = request.POST['occupantcovered']
         applyData.policystatus = 'Pending'
+        applyData.customerid = models.Customer.objects.get(user_id=request.user.id)
         policy_instance = Policy.objects.get(id=id)
         applyData.applyid = policy_instance
-        applyData.tracking_number = random.randint(1,9999999)
-
+        trk = random.randint(1,9999999)
+        applyData.tracking_number = trk
         applyData.save()
-
-      
-
-    context = {
-        'years': years,
-        'policy':Policy.objects.get(id=id)
-       
-    }
+        messages.success(request,'Your application sent successfully'+str(trk)+'this is tracking number')
+        
     return redirect('history')
+    
 
 def moredetail_medical(request):
     userForm=forms.CustomerUserForm()
@@ -175,20 +171,16 @@ def moredetail_agriculture(request,id):
 
     if request.method == 'POST':
         agri = ApplyPolicyAgriculture()
-        agri.policy_number =  request.POST.get('policynumber')
-        agri.policy_start_date = request.POST.get('policystartdate')
-        agri.premium_amount= request.POST.get('premiumamount')
         agri.policy_status = 'Pending'
-        agri.insured_person_name = request.POST.get('insuredpersonname')
-        agri.insured_person_gender = request.POST.get('insuredpersongender')
         agri.location = request.POST.get('location')
-        agri.policy_holder_name = request.POST.get('policyholdername')
-        agri.policy_end_date = request.POST.get('policyenddate')
-        agri.coverage_amount = request.POST.get('coverageamount')
+        agri.insurance_type = request.POST.get('insurancetype')
+        agri.crop_name = request.POST.get('cropname')
         agri.crop_type = request.POST.get('croptype')
-        agri.insured_person_age = request.POST.get('insuredpersonage')
+        agri.planting_date = request.POST.get('plantingdate')
+        agri.harvest_date = request.POST.get('harvestdate')
         agri.plot_size = request.POST.get('plotsize')
-        agri.contact_number = request.POST.get('contactnumber')
+        agri.soiltype = request.POST.get('soiltype')
+        agri.customerid = models.Customer.objects.get(user_id=request.user.id)
         policy_instance = Policy.objects.get(id=id)
         agri.appliedid = policy_instance
         agri.tracking_number = random.randint(1,9999999)

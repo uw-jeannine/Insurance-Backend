@@ -21,12 +21,11 @@ class PolicyForm(forms.ModelForm):
     policy_name = forms.CharField(max_length=200, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Jeevan Surbhi'}))
     premium_amount = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': '5000'}))
     deductible = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': '5000'}))
-    coverage_amount = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': '5000'}))
     tenure = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': '12'}))
 
     class Meta:
         model = Policy
-        fields = ['category', 'policy_name', 'premium_amount', 'deductible', 'coverage_amount', 'tenure']
+        fields = ['category', 'policy_name', 'premium_amount', 'deductible', 'tenure']
 
 
 class QuestionForm(forms.ModelForm):

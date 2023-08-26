@@ -6,6 +6,8 @@ class Customer(models.Model):
     profile_pic= models.ImageField(upload_to='profile_pic/Customer/',null=True,blank=True)
     address = models.CharField(max_length=40)
     mobile = models.CharField(max_length=20,null=False)
+    email = models.CharField(max_length=255,null=True,blank=True)
+    nationalid = models.CharField(max_length=16,null=True,blank=True)
    
     @property
     def get_name(self):
@@ -33,6 +35,7 @@ class Submit_claim(models.Model):
     injuryinformation = models.CharField(max_length=255,null=True,blank=True)
     uploadphotos = models.FileField()
     additionalcomment = models.TextField()
+    coverage_amount =  models.CharField(max_length=255,null=True,blank=True)
 
     def __str__(self):
         return self.name
@@ -43,7 +46,6 @@ class ApplyPolicyVehicle(models.Model):
     yearofmanufacture =  models.CharField(max_length=255,null=True,blank=True)
     insuredvalue = models.CharField(max_length=255,null=True,blank=True)
     territoriallimit = models.CharField(max_length=255,null=True,blank=True)
-    deductible = models.CharField(max_length=255,null=True,blank=True)
     model = models.CharField(max_length=255,null=True,blank=True)
     numberofchasis =  models.CharField(max_length=255,null=True,blank=True)
     seatcapacity = models.CharField(max_length=255,null=True,blank=True)
@@ -51,35 +53,25 @@ class ApplyPolicyVehicle(models.Model):
     occupantcover =  models.CharField(max_length=255,null=True,blank=True)
     policystatus = models.CharField(max_length=255,null=True,blank=True)
     applyid = models.ForeignKey('insurance.Policy', on_delete=models.CASCADE)
+    customerid = models.ForeignKey(Customer, on_delete=models.CASCADE)
     tracking_number = models.CharField(max_length=255,null=True, blank=True)
-
-
-    
 
 
 class ApplyPolicyAgriculture(models.Model):
-    policy_number = models.CharField(max_length=255, null=True, blank=True)
-    policy_holder_name = models.CharField(max_length=255, null=True, blank=True)
-    policy_start_date = models.DateField(null=True, blank=True)
-    policy_end_date = models.DateField(null=True, blank=True)
-    premium_amount = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
-    coverage_amount = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     policy_status = models.CharField(max_length=255, null=True, blank=True)
     crop_type = models.CharField(max_length=255, null=True, blank=True)
-    insured_person_name = models.CharField(max_length=255, null=True, blank=True)
-    insured_person_age = models.CharField(max_length=255, null=True, blank=True)
-    insured_person_gender = models.CharField(max_length=255, null=True, blank=True)
+    insurance_type = models.CharField(max_length=255, null=True, blank=True)
     plot_size = models.CharField(max_length=255, null=True, blank=True)
+    crop_name = models.CharField(max_length=255, null=True,blank=True)
+    planting_date = models.DateField(null=True, blank=True)
+    harvest_date = models.DateField(null=True, blank=True)
+    soiltype = models.CharField(max_length=255,blank=True,null=True)
     location = models.CharField(max_length=255, null=True, blank=True)
-    contact_number = models.CharField(max_length=255, null=True, blank=True)
     appliedid = models.ForeignKey('insurance.Policy', on_delete=models.CASCADE)
+    customerid = models.ForeignKey(Customer, on_delete=models.CASCADE)
     tracking_number = models.CharField(max_length=255,null=True, blank=True)
 
-
-    # Add the digital signature field here as described in the previous response
-
-    def __str__(self):
-        return self.policy_number
+   
 
 
 class ApplyPolicyProperty(models.Model):

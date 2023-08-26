@@ -21,7 +21,7 @@ urlpatterns = [
      path('submit-claim', views.submit_claim_view,name='submit-claim'),
     path('claim-history', views.claim_history_view,name='claim-history'),
 
-    path('moredetail-vehicle/<int:id>/', views.moredetail_vehicle,name='moredetail-vehicle'),
+    path('moredetail-vehicle/<int:id>', views.moredetail_vehicle,name='moredetail-vehicle'),
     path('moredetail-medical', views.moredetail_medical,name='moredetail-medical'),
     path('moredetail-fire', views.moredetail_fire,name='moredetail-fire'),
     path('moredetail-agriculture/<int:id>', views.moredetail_agriculture,name='moredetail-agriculture'),

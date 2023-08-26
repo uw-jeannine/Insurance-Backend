@@ -11,6 +11,9 @@ from django.core.mail import send_mail
 from django.contrib.auth.models import User
 from customer import models as CMODEL
 from customer import forms as CFORM
+from django.shortcuts import get_object_or_404
+from django.core.mail import send_mail
+from django.conf import settings
 
 from customer.models import ApplyPolicyAgriculture,ApplyPolicyVehicle,ApplyPolicyMedical
 
@@ -136,7 +139,7 @@ def update_category_view(request,pk):
 
 def admin_policy_view(request):
      dict={
-        'total_policy_holder':models.PolicyRecord.objects.all().count(),
+        'total_policy_holder':models.Category.objects.all().count(),
         'approved_policy_holder':models.PolicyRecord.objects.all().filter(status='Approved').count(),
         'disapproved_policy_holder':models.PolicyRecord.objects.all().filter(status='Disapproved').count(),
         'waiting_policy_holder':models.PolicyRecord.objects.all().filter(status='Pending').count(),
@@ -214,27 +217,90 @@ def admin_view_waiting_policy_holder_view(request):
     return render(request,'insurance/admin_view_waiting_policy_holder.html',{'policyrecords':policyrecords})
 
 def approve_request_view(request,pk):
-    policyrecords = models.PolicyRecord.objects.get(id=pk)
-    policyrecords.status='Approved'
+    policyrecords = CMODEL.ApplyPolicyVehicle.objects.get(id=pk)
+    user_instance = get_object_or_404(User,id = policyrecords.customerid.id)
+    recordscustomer = CMODEL.Customer.objects.get(id=user_instance.id)
+    print(recordscustomer.email)
+    subject = 'Insurance application'
+    message = 'This is the plain text version of the email.'
+    html_message = '<p>This is the <strong>HTML</strong> version of the email.</p>'
+    from_email =   settings.EMAIL_HOST_USER
+    recipient_list = [str(recordscustomer.email)]
+    send_mail(subject, message, from_email, recipient_list, html_message=html_message)
+    policyrecords.policystatus='Approved'
     policyrecords.save()
-    return redirect('admin-view-policy-holder')
+    return redirect('view_policy_vehicle')
 
 def disapprove_request_view(request,pk):
-    policyrecords = models.PolicyRecord.objects.get(id=pk)
-    policyrecords.status='Disapproved'
+    policyrecords = CMODEL.ApplyPolicyVehicle.objects.get(id=pk)
+    user_instance = get_object_or_404(User,id = policyrecords.customerid.id)
+    recordscustomer = CMODEL.Customer.objects.get(id=user_instance.id)
+    print(recordscustomer.email)
+    subject = 'Insurance application'
+    message = 'This is the plain text version of the email.'
+    html_message = '<p>This is the <strong>HTML</strong> version of the email.</p>'
+    from_email =   settings.EMAIL_HOST_USER
+    recipient_list = [str(recordscustomer.email)]
+    send_mail(subject, message, from_email, recipient_list, html_message=html_message)
+    policyrecords.policystatus='Disapproved'
     policyrecords.save()
-    return redirect('admin-view-policy-holder')
+    return redirect('view_policy_vehicle')
 
 def view_policy(request):
-    return render(request,'insurance/')
+    dict={
+        'total_applied_vehicle':CMODEL.ApplyPolicyVehicle.objects.all().count(),
+        'total_applied_agri':CMODEL.ApplyPolicyAgriculture.objects.all().count()  
+    }
+    return render(request,'insurance/view_policy.html',dict)
+
+def admin_view_vehicle(request):
+    record = CMODEL.ApplyPolicyVehicle.objects.all()
+    return render(request,'insurance/admin_view_vehicle.html',{"datas":record})
+
+def admin_view_agri(request):
+    record = CMODEL.ApplyPolicyAgriculture.objects.all()
+    return render(request,'insurance/admin_view_agri.html',{"datas":record})
+
+
+def approve_request_view_agri(request,pk):
+    policyrecords = CMODEL.ApplyPolicyAgriculture.objects.get(id=pk)
+    user_instance = get_object_or_404(User,id = policyrecords.customerid.id)
+    recordscustomer = CMODEL.Customer.objects.get(id=user_instance.id)
+    print(recordscustomer.email)
+    subject = 'Insurance application'
+    message = 'This is the plain text version of the email.'
+    html_message = '<p>This is the <strong>HTML</strong> version of the email.</p>'
+    from_email =   settings.EMAIL_HOST_USER
+    recipient_list = [str(recordscustomer.email)]
+    send_mail(subject, message, from_email, recipient_list, html_message=html_message)
+
+    policyrecords.policy_status='Approved'
+    policyrecords.save()
+    return redirect('view_policy_agri')
+
+def disapprove_request_view_agri(request,pk):
+    policyrecords = CMODEL.ApplyPolicyAgriculture.objects.get(id=pk)
+    user_instance = get_object_or_404(User,id = policyrecords.customerid.id)
+    recordscustomer = CMODEL.Customer.objects.get(id=user_instance.id)
+    print(recordscustomer.email)
+    subject = 'Insurance application'
+    message = 'Cancelled the Request'
+    html_message = '<p>This is the <strong>HTML</strong> version of the email.</p>'+message
+    from_email =   settings.EMAIL_HOST_USER
+    recipient_list = [str(recordscustomer.email)]
+    send_mail(subject, message, from_email, recipient_list, html_message=html_message)
+    policyrecords.policy_status='Disapproved'
+    policyrecords.save()
+    return redirect('view_policy_agri')
+
 
 def admin_question_view(request):
     questions = models.Question.objects.all()
     return render(request,'insurance/admin_question.html',{'questions':questions})
 
 def admin_claim_view(request):
-    # questions = models.Question.objects.all()
-    return render(request,'insurance/admin_claims.html')
+    questions = CMODEL.Submit_claim.objects.all()
+    return render(request,'insurance/admin_claims.html',{'claims':questions})
 
 def update_question_view(request,pk):
     question = models.Question.objects.get(id=pk)

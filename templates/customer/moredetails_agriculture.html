@@ -43,78 +43,49 @@
     <!-- Fields for agriculture insurance -->
     <div class="form-row">
         <div class="form-group col-md-6">
-            <label for="policy_number">Policy Number</label>
-            <input type="text" name="policynumber" class="form-control" placeholder="Policy Number">
-        </div>
-        <div class="form-group col-md-6">
-            <label for="policy_holder_name">Policy Holder Name</label>
-            <input type="text" name="policyholdername" class="form-control" placeholder="Policy Holder Name">
-        </div>
-    </div>
-
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <label for="policy_start_date">Policy Start Date</label>
-            <input type="date" name="policystartdate" class="form-control">
-        </div>
-        <div class="form-group col-md-6">
-            <label for="policy_end_date">Policy End Date</label>
-            <input type="date" name="policyenddate" class="form-control">
-        </div>
-    </div>
-
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <label for="premium_amount">Premium Amount</label>
-            <input type="number" name="premiumamount" class="form-control" placeholder="Premium Amount">
-        </div>
-        <div class="form-group col-md-6">
-            <label for="coverage_amount">Coverage Amount</label>
-            <input type="number" name="coverageamount" class="form-control" placeholder="Coverage Amount">
-        </div>
-    </div>
-
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <label for="policy_status">Policy Status</label>
-            <input type="text" name="policystatus" class="form-control" placeholder="Policy Status">
-        </div>
-        <div class="form-group col-md-6">
             <label for="crop_type">Crop Type</label>
-            <input type="text" name="croptype" class="form-control" placeholder="Crop Type">
+            <input type="text" name="crop_type" class="form-control" placeholder="Crop Type">
         </div>
+        <div class="form-group col-md-6">
+            <label for="insurance-type">Insurance type</label>
+            <select name="insurancetype" class="form-control">
+                <option value="floods">Floods and excess of rain</option>
+                <option value="Droughts">Droughts and lack of rain</option>
+            </select>
+        </div>
+        
     </div>
 
     <div class="form-row">
-        <div class="form-group col-md-6">
-            <label for="insured_person_name">Insured Person Name</label>
-            <input type="text" name="insuredpersonname" class="form-control" placeholder="Insured Person Name">
-        </div>
-        <div class="form-group col-md-6">
-            <label for="insured_person_age">Insured Person Age</label>
-            <input type="text" name="insuredpersonage" class="form-control" placeholder="Insured Person Age">
-        </div>
-    </div>
-
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <label for="insured_person_gender">Insured Person Gender</label>
-            <input type="text" name="insuredpersongender" class="form-control" placeholder="Insured Person Gender">
-        </div>
         <div class="form-group col-md-6">
             <label for="plot_size">Plot Size</label>
             <input type="text" name="plotsize" class="form-control" placeholder="Plot Size">
         </div>
+        <div class="form-group col-md-6">
+            <label for="crop_name">Crop Name</label>
+            <input type="text" name="cropname" class="form-control" placeholder="Crop Name">
+        </div>
     </div>
 
     <div class="form-row">
         <div class="form-group col-md-6">
-            <label for="location">Location</label>
-            <input type="text" name="location" class="form-control" placeholder="Location">
+            <label for="planting_date">Planting Date</label>
+            <input type="date" name="plantingdate" class="form-control">
         </div>
         <div class="form-group col-md-6">
-            <label for="contact_number">Contact Number</label>
-            <input type="text" name="contactnumber" class="form-control" placeholder="Contact Number">
+            <label for="harvest_date">Harvest Date</label>
+            <input type="date" name="harvestdate" class="form-control">
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="soiltype">Soil Type</label>
+            <input type="text" name="soiltype" class="form-control" placeholder="Soil Type">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="location">Location</label>
+            <input type="text" name="location" class="form-control" placeholder="Location">
         </div>
     </div>
 
@@ -122,6 +93,7 @@
 
     <button type="submit" class="btn btn-primary ml-5">Apply</button>
 </form>
+
 
 I've added fields specific to an Agriculture Insurance policy, such as "Crop Type," "Plot Size," "Location," and
 "Contact Number." You can now capture the necessary information for an Agriculture Insurance policy using this form.

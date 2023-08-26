@@ -49,7 +49,6 @@
         <th>Serial No.</th>
           <th>Policy Name</th>
           <th> Category</th>
-          <th> Sum Assurance</th>
           <th> Premium</th>
           <th> Tenure</th>
           <th> Creation Date</th>
@@ -61,8 +60,7 @@
         <td> {{ forloop.counter }}</td>
         <td> {{t.policy_name}}</td>
         <td> {{t.category}}</td>
-        <td> {{t.sum_assurance}}</td>
-        <td> {{t.premium}}</td>
+        <td> {{t.premium_amount}}</td>
         <td> {{t.tenure}}</td>
         <td>{{t.creation_date}}</td>
         <td> <a href="{% url 'detailapply' id=t.id %}"><button class="btn btn-primary">Apply now</button></a> </td>

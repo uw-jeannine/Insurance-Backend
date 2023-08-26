@@ -50,10 +50,8 @@
           <th>Date of Incident</th>
           <th>Location</th>
           <th>Policy Holder Name</th>
-          <th>Policy Start Date</th>
-          <th>Policy End Date</th>
           <th>Coverage Amount</th>
-          <th>Contact Number</th>
+          <th>Send Feedback</th>
         </tr>
       </thead>
       {% for claim in claims %}
@@ -61,13 +59,13 @@
         <td> {{ forloop.counter }}</td>
         <td>{{ claim.claim_type }}</td>
         <td>{{ claim.description }}</td>
-        <td>{{ claim.date_of_incident }}</td>
+        <td>{{ claim.dateofincident }}</td>
         <td>{{ claim.location }}</td>
-        <td>{{ claim.policy_holder_name }}</td>
-        <td>{{ claim.policy_start_date }}</td>
-        <td>{{ claim.policy_end_date }}</td>
+        <td>{{ claim.name }}</td>
         <td>{{ claim.coverage_amount }}</td>
-        <td>{{ claim.contact_number }}</td>
+        <td>
+          <button class="btn btn-primary badge-pill" style="width: 120px;"><a  style="text-decoration: none;color: white;" href="">Reply</a> </button>
+        </td>
       </tr>
       {% endfor %}
     </table>
