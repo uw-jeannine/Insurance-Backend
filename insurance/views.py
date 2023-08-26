@@ -225,6 +225,8 @@ def disapprove_request_view(request,pk):
     policyrecords.save()
     return redirect('admin-view-policy-holder')
 
+def view_policy(request):
+    return render(request,'insurance/')
 
 def admin_question_view(request):
     questions = models.Question.objects.all()
