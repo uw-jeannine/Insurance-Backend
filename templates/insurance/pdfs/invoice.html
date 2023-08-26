@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <title>{% if pdf_title %}{{ pdf_title }}{% else %}PDF{% endif %}</title>
+        <style type="text/css">
+            body {
+                font-weight: 100;
+                font-size: 14px;
+            }
+            .header {
+                font-size: 12px;
+                font-weight: 100;
+                text-align: center;
+                color: #007cae;
+            }
+            .title {
+                font-size: 12px;
+                font-weight: 100;
+                /* text-align: right;*/
+                padding: 10px 20px 0px 20px;  
+            }
+            .title span {
+                color: #007cae;
+            }
+            .details {
+                padding: 10px 20px 0px 20px;
+                text-align: left !important;
+                /*margin-left: 40%;*/
+            }
+            .hrItem {
+                border: none;
+                height: 1px;
+                /* Set the hr color */
+                color: #333; /* old IE */
+                background-color: #fff; /* Modern Browsers */
+            }
+        </style>
+    </head>
+    <body>
+        <div class='wrapper'>
+            <div class='header'>
+                <p class='title'>Vignette</p>
+            </div>
+        <div>
+        <div class='details'>
+            <div class="content">
+                <div class="first-section">
+                  <img src="/static/images/images.png" alt="">
+                  <div class="info text-center" style="display:flex; justify-content:center">
+                    <p>Association des Assureurs du Rwanda </p>
+                    <p>MOTOR INSURANCE CERTIFICATE</p>
+                    <p>No. {{data.id}}</p>
+                  </div>
+                </div>
+                <div class="second-section">
+                  <div class="informations">
+                    <h1></h1>
+                    <span> POLICY HOLDER: {{data.customerid}}</span>
+                  </div>
+                  <div class="informations">
+                    <h1>POLICY NO:</h1>
+                    <span>{{data.tracking_number}}</span>
+                  </div>
+                  <div class="informations">
+                    <h1>INCEPTION DATE:</h1>
+                    <span>20/3/2023</span>
+                  </div>
+                  <div class="informations">
+                    <h1>EXPIRY DATE:</h1>
+                    <span>20/3/2023</span>
+                  </div>
+                  <div class="informations">
+                    <h1>REGISTRATION:</h1>
+                    <span>{{data.platenumnber}}</span>
+                  </div>
+                  <div class="informations">
+                    <h1>CHASSIS:</h1>
+                    <span>{{data.numberofchasis}}</span>
+                  </div>
+                  <div class="informations">
+                    <h1>LICENSED TO CARRY:</h1>
+                    <span>{{data.seatcapacity}}</span>
+                  </div>
+                  <div class="informations">
+                    <h1>USAGE:</h1>
+                    <span>{{data.typeofvehicle}}</span>
+                  </div>
+                  <div class="informations">
+                    <h1>INSURER:</h1>
+                    <span>{{data.insuredvalue}}</span>
+                  </div>
+                </div>
+              </div>
+            <hr class='hrItem' />
+        </div>
+    </div>
+    </body>
+</html>

@@ -12,10 +12,72 @@ from django.contrib.auth.models import User
 from customer import models as CMODEL
 from customer import forms as CFORM
 from django.shortcuts import get_object_or_404
-from django.core.mail import send_mail
+from django.core.mail import send_mail,EmailMessage
 from django.conf import settings
-
+from django.contrib import messages
 from customer.models import ApplyPolicyAgriculture,ApplyPolicyVehicle,ApplyPolicyMedical
+from django.template.loader import get_template
+
+import datetime
+
+
+from django.http import HttpResponse
+from django.template.loader import render_to_string
+from xhtml2pdf import pisa
+
+def generate_pdf(request,id):
+    # Render the HTML template
+    data = {
+        'today': datetime.date.today(), 
+        'amount': 39.99,
+
+        'customer_name': 'Cooper Mann',
+        'invoice_number': 1233434,
+        }
+    
+    records = CMODEL.ApplyPolicyVehicle.objects.get(id=id)
+
+    html = render_to_string('insurance/pdfs/invoice.html', {'data': records})
+
+    # Create a PDF object
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'filename="generated_pdf.pdf"'
+
+    # Generate PDF using xhtml2pdf
+    pisa_status = pisa.CreatePDF(html, dest=response)
+    if pisa_status.err:
+        return HttpResponse('Error generating PDF', content_type='text/plain')
+
+    return response
+
+def adminsendvignette(request,id):
+    policyrecords = CMODEL.ApplyPolicyVehicle.objects.get(id=id)
+    user_instance = get_object_or_404(User,id = policyrecords.customerid.id)
+    recordscustomer = CMODEL.Customer.objects.get(id=user_instance.id)
+    print(recordscustomer.email)
+    if request.method == 'POST':
+        subject = 'Reply Claim feedback'
+        attachment_data = request.FILES.get('sendvignette')
+        print(attachment_data)
+        message = str('Send Vignette')
+        html_message = str('Send Vignette')
+        from_email =   settings.EMAIL_HOST_USER
+        recipient_list = [str(recordscustomer.email)]
+        email = EmailMessage(
+            subject, 
+            message, 
+            from_email, 
+            recipient_list,
+            )
+        email.attach(
+            attachment_data.name,
+            attachment_data.read(),
+            attachment_data.content_type
+        )
+        email.send()
+        messages.success( request,"Vignette sent successfully")
+    return render(request,'insurance/send_vegnite.html',{'id':id})
+
 
 def home_view(request):
     if request.user.is_authenticated:
@@ -195,6 +257,19 @@ def admin_delete_policy_view(request):
     policies = models.Policy.objects.all()
     return render(request,'insurance/admin_delete_policy.html',{'policies':policies})
     
+
+def claimFeedback(request,email):
+    if request.method == 'POST':
+        subject = 'Reply Claim feedback'
+        message = request.POST.get('message')
+        html_message = str(message)
+        from_email =   settings.EMAIL_HOST_USER
+        recipient_list = [str(email)]
+        send_mail(subject, message, from_email, recipient_list, html_message=html_message)
+        messages.success( request,"Claims added successfully")
+    return render(request,'insurance/claimfeedback.html',{'email': email})
+
+
 def delete_policy_view(request,pk):
     policy = models.Policy.objects.get(id=pk)
     policy.delete()

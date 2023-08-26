@@ -55,7 +55,14 @@
                 <td class="text-right">
                     <button class="btn btn-primary badge-pill" style="width: 120px;"><a  style="text-decoration: none;color: white;" href="{% url 'approve-request' t.id  %}">Approve</a> </button>
                     <button class="btn btn-danger badge-pill" style="width: 80px;"><a  style="text-decoration: none;color: white;" href="{% url 'reject-request' t.id  %}">Reject</a> </button>
-                </td>              
+                </td>  
+                {% elif t.policystatus == 'Approved' %} 
+                
+                <td>
+                  <span style="color:red;font-size:20px;" class="label success">{{t.policystatus}}</span>
+                  <button class="btn btn-warning badge-pill" style="width: 120px;"><a  style="text-decoration: none;color: white;" href="{% url 'pdf_view' t.id  %}" target="_blank">Download</a> </button>
+                  <button class="btn btn-primary badge-pill" style="width: 120px;"><a  style="text-decoration: none;color: white;" href="{% url 'admin-send-vignette' t.id  %}" target="_blank">send vignette</a> </button>
+                </td>
 
                 {% else %}
                 <td class="text-right">

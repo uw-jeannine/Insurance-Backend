@@ -117,6 +117,7 @@ def submit_claim_view(request):
         submit_claim.injuryinformation = request.POST['injuryinformation']
         submit_claim.uploadphotos = request.FILES['uploadphotos']
         submit_claim.additionalcomment = request.POST['additionalcomment']
+        submit_claim.coverage_amount = request.POST['coverage_amount']
         submit_claim.save()
         messages.success( request,"Claims added successfully")
     return render(request,'customer/submit_claim.html')
