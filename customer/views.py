@@ -15,6 +15,8 @@ from customer.models import Customer,ApplyPolicyVehicle, Submit_claim
 from django.contrib import messages
 from insurance.models import Policy,Category, PolicyRecord
 # from .forms import PolicyAgricultureForm, PolicyPropertyForm, PolicyMedicalForm
+import re
+
 
 def index_home(request):
     return render(request,'index.html')
@@ -125,6 +127,8 @@ def claim_history_view(request):
 
 def moredetail_vehicle(request, id):
     years = list(range(1950, 2023))
+    error_message = ""
+    policy = None 
     if request.method == 'POST':
         applyData =  ApplyPolicyVehicle()
         applyData.marque =  request.POST['marque']
@@ -141,18 +145,24 @@ def moredetail_vehicle(request, id):
         applyData.policystatus = request.POST['policystatus']
         policy_instance = Policy.objects.get(id=id)
         applyData.applyid = policy_instance
-        applyData.save()
+        plate_regex = r'^[A-Z]{3}\d{3}[A-Z]$'
+        if not re.match(plate_regex,  applyData.platenumnber):
+            error_message = "Invalid plate number format"
+        else:
 
-        customer = Customer.objects.get(user=request.user)  # Adjust this based on your logic
-        policy = Policy.objects.get(id=id)
-        policy_record = PolicyRecord.objects.create(customer=customer, Policy=policy, status='Pending')
-
+            applyData.save()
+            customer = Customer.objects.get(user=request.user)  # Adjust this based on your logic
+            policy = Policy.objects.get(id=id)
+            policy_record = PolicyRecord.objects.create(customer=customer, Policy=policy, status='Pending')
+            return redirect('history')
+        
     context = {
         'years': years,
-        'policy':Policy.objects.get(id=id)
-       
+        'policy':Policy.objects.get(id=id),
+        'error_message': error_message
     }
-    return redirect('history')
+    return render(request, 'customer/moredetail-vehicle.html', context)
+    
 
 def moredetail_medical(request):
     userForm=forms.CustomerUserForm()

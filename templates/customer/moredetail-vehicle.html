@@ -11,7 +11,33 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#plateNumberInput").on("input", function () {
+                var plateNumber = $(this).val().trim();
+                var plateRegex = /^[A-Z]{3}\d{3}[A-Z]$/;
+
+                if (plateRegex.test(plateNumber)) {
+                    $(this).removeClass("is-invalid");
+                    $(this).addClass("is-valid");
+                } else {
+                    $(this).removeClass("is-valid");
+                    $(this).addClass("is-invalid");
+                }
+            });
+        });
+    </script>
+
     <style>
+        .is-valid {
+            border-color: #28a745;
+        }
+
+        /* Add styles for invalid input */
+        .is-invalid {
+            border-color: #dc3545;
+        }
+
         a:link {
             text-decoration: none;
         }
@@ -63,8 +89,14 @@
 
     <div class="form-row">
         <div class="form-group col-md-6">
+            {% if error_message %}
+            <div class="alert alert-danger">
+                {{ error_message }}
+            </div>
+            {% endif %}
             <label for="plate_no">Plate Number</label>
-            <input type="text" name="platenumber" class="form-control" placeholder="Plate Number">
+            <input type="text" name="platenumber" id="plateNumberInput" class="form-control" placeholder="Plate Number">
+
         </div>
         <div class="form-group col-md-6">
             <label for="no_of_chassis">Number of Chassis</label>
@@ -119,7 +151,7 @@
             <input type="text" name="policystatus" class="form-control" placeholder="Policy Status">
         </div>
     </div>
-    
+
     <button type="submit" class="btn btn-primary ml-5">Apply</button>
 </form>
 
