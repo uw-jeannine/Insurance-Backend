@@ -25,20 +25,26 @@ import datetime
 from django.http import HttpResponse
 from django.template.loader import render_to_string
 from xhtml2pdf import pisa
-
+from dateutil.relativedelta import relativedelta
 def generate_pdf(request,id):
     # Render the HTML template
-    data = {
-        'today': datetime.date.today(), 
-        'amount': 39.99,
-
-        'customer_name': 'Cooper Mann',
-        'invoice_number': 1233434,
-        }
     
     records = CMODEL.ApplyPolicyVehicle.objects.get(id=id)
+    user_instance = get_object_or_404(User,id = records.applyid.id)
+    recordscustomer = models.Policy.objects.get(id=user_instance.id)
 
-    html = render_to_string('insurance/pdfs/invoice.html', {'data': records})
+    current_date = datetime.date.today()
+    months_to_add = recordscustomer.tenure
+    new_date = current_date + relativedelta(months=months_to_add)
+    print(new_date)
+
+    data = {
+        'today': datetime.date.today(), 
+        'expire':new_date
+        }
+    print(recordscustomer.tenure)
+
+    html = render_to_string('insurance/pdfs/invoice.html', {'data': records,'date':data})
 
     # Create a PDF object
     response = HttpResponse(content_type='application/pdf')
