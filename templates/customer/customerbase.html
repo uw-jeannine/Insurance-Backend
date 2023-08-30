@@ -71,7 +71,7 @@
     .sidebar .profile_image {
       width: 100px;
       height: 100px;
-      border-radius: 100px;
+      border-radius: 100%;
       margin-bottom: 10px;
     }
 
@@ -175,7 +175,7 @@
   <div class="sidebar" style="margin-top:60px;">
     <center>
 
-      <img src="{% static customer.profile_pic.url %}" class="profile_image" alt="">
+      <img src="{{ customer.profile_pic.url }}" class="profile_image" alt="">
       <h4>{{request.user.first_name}}</h4>
       <h6 style="color: rgb(255, 255, 255);">( Customer )</h6>
 

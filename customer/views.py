@@ -18,6 +18,7 @@ import random
 from django.contrib import messages
 
 
+
 def index_home(request):
     return render(request,'index.html')
 
@@ -53,13 +54,16 @@ def is_customer(user):
 @login_required(login_url='customerlogin')
 def customer_dashboard_view(request):
     record = PolicyRecord.objects.filter(customer__user=request.user).count()
-    print(record)
+    customer = Customer.objects.get(user_id=request.user.id)
+    print(customer.profile_pic)
+    # print(record)
     dict={
-        'customer':models.Customer.objects.get(user_id=request.user.id),
+        'customer':customer,
         'available_policy':CMODEL.Policy.objects.all().count(),
         'applied_policy':record,
         'total_category':Category.objects.all().count(),
         'total_question':CMODEL.Question.objects.all().filter(customer=models.Customer.objects.get(user_id=request.user.id)).count(),
+        
 
     }
     return render(request,'customer/customer_dashboard.html',context=dict)
@@ -138,7 +142,6 @@ def moredetail_vehicle(request,id):
         applyData.model = request.POST['model']
         applyData.numberofchasis = request.POST['numberofchasis']
         applyData.seatcapacity = request.POST['seatcapacity']
-        applyData.typeofvehicle = request.POST['typeofvehicle']
         applyData.occupantcover = request.POST['occupantcovered']
         applyData.policystatus = 'Pending'
         applyData.customerid = models.Customer.objects.get(user_id=request.user.id)
@@ -247,7 +250,7 @@ def detailapply(request,id):
     years = list(range(1950, 2023))
     print(category)
     
-    if category == 'Vehicle insurance':
+    if category == 'Motor insurance':
         # Render the motor category form
         return render(request, 'customer/moredetail-vehicle.html', context={"years": years, "policy": recordselect})
     elif category == 'Agriculture insurance':

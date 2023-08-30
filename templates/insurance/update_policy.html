@@ -55,20 +55,25 @@
 <div>
   <form method="post" autocomplete="off" enctype="multipart/form-data" style="margin-left:200px;margin-right:200px;">
       {% csrf_token %}
-        <label for="course_name">Category</label>
-      {% render_field policyForm.category class="form-control" placeholder="Life Insurance" %}
-
-        <label for="course_name">Policy Name</label>
-      {% render_field policyForm.policy_name class="form-control" placeholder="Jeevan Surbhi" %}
-
-     <label for="course_name">Sum Assurance</label>
-      {% render_field policyForm.sum_assurance class="form-control" placeholder="100000" %}
-
-    <label for="course_name">Premium</label>
-      {% render_field policyForm.premium class="form-control" placeholder="5000" %}
-
-          <label for="course_name">Tenure</label>
-      {% render_field policyForm.tenure class="form-control" placeholder="12" %}
+      <div class="form-group">
+        <label for="category">Category</label>
+        {% render_field policyForm.category class="form-control" placeholder="Medical Insurance" %}
+    
+        <label for="policy_name">Policy Name</label>
+        {% render_field policyForm.policy_name class="form-control" placeholder="comprehensive insurance" %}
+    
+        <label for="type_of_vehicle">Type of Vehicle</label>
+        {% render_field policyForm.type_of_vehicle class="form-control" placeholder="sports car" %}
+    
+        <label for="premium">Premium Amount</label>
+        {% render_field policyForm.premium_amount class="form-control" placeholder="150000" %}
+    
+        <label for="deductible">Deductible Amount</label>
+        {% render_field policyForm.deductible class="form-control" placeholder="25000" %}
+    
+        <label for="tenure">Period</label>
+        {% render_field policyForm.tenure class="form-control" placeholder="12" %}
+      </div>
 
 
         

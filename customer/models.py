@@ -49,7 +49,6 @@ class ApplyPolicyVehicle(models.Model):
     model = models.CharField(max_length=255,null=True,blank=True)
     numberofchasis =  models.CharField(max_length=255,null=True,blank=True)
     seatcapacity = models.CharField(max_length=255,null=True,blank=True)
-    typeofvehicle = models.CharField(max_length=255,null=True,blank=True)
     occupantcover =  models.CharField(max_length=255,null=True,blank=True)
     policystatus = models.CharField(max_length=255,null=True,blank=True)
     applyid = models.ForeignKey('insurance.Policy', on_delete=models.CASCADE)

@@ -9,13 +9,31 @@ class Category(models.Model):
         return self.category_name
 
 class Policy(models.Model):
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    policy_name = models.CharField(max_length=200)
-    premium_amount = models.PositiveIntegerField()
-    deductible = models.PositiveIntegerField()
-    tenure = models.PositiveIntegerField()
-    creation_date = models.DateField(auto_now=True)
-    def __str__(self):
+     VEHICLE_CHOICES = [
+        ('person_goods_transport', 'Person & Goods Transport Cars'),
+        ('minibus', 'Minibus & Minibus Carrying Goods'),
+        ('motorcycle', 'Motorcycles'),
+        ('bus', 'Buses'),
+        ('truck', 'Trucks'),
+        ('van', 'Van Vehicles'),
+        ('driving_school', 'Driving School Vehicles'),
+        ('trailer_semi_trailers', 'Trailer & Semi-Trailers'),
+        ('tractor', 'Tractor'),
+        ('Crop', 'Crop Insurance'),
+        ('Forestry', 'Forestry Insurance'),
+        ('Warehouse', 'Warehouse Receipt Insurance'),
+        ('Equipment', 'Equipment Insurance'),
+      
+    ]
+     
+     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+     policy_name = models.CharField(max_length=200)
+     type_of_vehicle = models.CharField(max_length=255,choices=VEHICLE_CHOICES)
+     premium_amount = models.PositiveIntegerField()
+     deductible = models.PositiveIntegerField()
+     tenure = models.PositiveIntegerField()
+     creation_date = models.DateField(auto_now=True)
+     def __str__(self):
         return self.policy_name
 
 class PolicyRecord(models.Model):

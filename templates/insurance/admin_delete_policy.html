@@ -32,21 +32,24 @@
         <tr>
            <th>Serial No.</th>
           <th>Policy Name</th>
+          <th>Type of service</th>
           <th> Category</th>
-          <th> Premium</th>
-          <th> Tenure</th>
+          <th> Premium amount</th>
+          <th> Deductable</th>
+          <th> Period</th>
           <th> Creation Date</th>
-             <th>Delete</th>
+            <th>Delete</th>
         </tr>
       </thead>
       {% for t in policies %}
       <tr>
 
-          <td> {{ forloop.counter }}</td>
+        <td> {{ forloop.counter }}</td>
         <td> {{t.policy_name}}</td>
+        <td> {{t.type_of_vehicle}}</td>
         <td> {{t.category}}</td>
-        <td> {{t.sum_assurance}}</td>
         <td> {{t.premium_amount}}</td>
+        <td> {{t.deductible}}</td>
         <td> {{t.tenure}}</td>
         <td>{{t.creation_date}}</td>
         <td><a class="btn btn-danger btn-xs" href="{% url 'delete-policy' t.id  %}"><span class="glyphicon glyphicon-trash"></span></a></td>

@@ -4,13 +4,15 @@ from django.urls import path
 from insurance import views
 from django.contrib.auth.views import LogoutView,LoginView
 from django.urls import path,include
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('customer/',include('customer.urls')),
     path('',views.home_view,name='home'),
     
-    path('logout', LogoutView.as_view(template_name='insurance/logout.html'),name='logout'),
+    path('logout', LogoutView.as_view(template_name='index.html'),name='logout'),
     path('products', views.products,name='products'),
     path('vignette', views.vignette,name='vignette'),
     path('contactus', views.contactus_view),
@@ -63,5 +65,6 @@ urlpatterns = [
     path('admin-question', views.admin_question_view,name='admin-question'),
     path('admin-claim', views.admin_claim_view,name='admin-claim'),
     path('update-question/<int:pk>', views.update_question_view,name='update-question'),
-
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -17,6 +17,7 @@ from django.conf import settings
 from django.contrib import messages
 from customer.models import ApplyPolicyAgriculture,ApplyPolicyVehicle,ApplyPolicyMedical
 from django.template.loader import get_template
+from customer.models import Customer
 
 import datetime
 
@@ -105,6 +106,7 @@ def adminclick_view(request):
 
 @login_required(login_url='adminlogin')
 def admin_dashboard_view(request):
+    customers = Customer.objects.all()
     dict={
         'total_user':CMODEL.Customer.objects.all().count(),
         'total_policy':models.Policy.objects.all().count(),
@@ -114,6 +116,7 @@ def admin_dashboard_view(request):
         'approved_policy_holder':models.PolicyRecord.objects.all().filter(status='Approved').count(),
         'disapproved_policy_holder':models.PolicyRecord.objects.all().filter(status='Disapproved').count(),
         'waiting_policy_holder':models.PolicyRecord.objects.all().filter(status='Pending').count(),
+        'customers':customers
     }
     return render(request,'insurance/admin_dashboard.html',context=dict)
 
@@ -224,6 +227,7 @@ def admin_add_policy_view(request):
 
 def admin_view_policy_view(request):
     policies = models.Policy.objects.all()
+    print(policies)
     return render(request,'insurance/admin_view_policy.html',{'policies':policies})
 
 
