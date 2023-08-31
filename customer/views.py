@@ -132,6 +132,8 @@ def claim_history_view(request):
 
 def moredetail_vehicle(request,id):
     years = list(range(1950, 2023))
+    getrecord = Policy.objects.get(id=id)
+    print(getrecord.id)
     if request.method == 'POST':
         applyData =  ApplyPolicyVehicle()
         applyData.marque =  request.POST['marque']
@@ -151,9 +153,10 @@ def moredetail_vehicle(request,id):
         applyData.tracking_number = trk
         applyData.save()
         messages.success(request,'Your application sent successfully'+str(trk)+'this is tracking number')
+        return render(request,'customer/history.html',{'trk':trk,'status':'Pending'})
+    return render(request,'customer/moredetail-vehicle.html',{'id':getrecord.id,'years':years})
+
         
-    return redirect('history')
-    
 
 def moredetail_medical(request):
     userForm=forms.CustomerUserForm()
@@ -187,11 +190,12 @@ def moredetail_agriculture(request,id):
         agri.customerid = models.Customer.objects.get(user_id=request.user.id)
         policy_instance = Policy.objects.get(id=id)
         agri.appliedid = policy_instance
-        agri.tracking_number = random.randint(1,9999999)
-
+        trk = random.randint(1,9999999)
+        agri.tracking_number = trk
         agri.save()
+        return render(request,'customer/history.html',{'trk':trk,'status':'Pending'})
 
-        return redirect('history')
+
 
     mydict={'userForm':userForm,'customerForm':customerForm}
     return render(request,'customer/moredetails_agriculture.html',context=mydict)
@@ -250,7 +254,7 @@ def detailapply(request,id):
     years = list(range(1950, 2023))
     print(category)
     
-    if category == 'Motor insurance':
+    if category == 'Vehicle insurance':
         # Render the motor category form
         return render(request, 'customer/moredetail-vehicle.html', context={"years": years, "policy": recordselect})
     elif category == 'Agriculture insurance':

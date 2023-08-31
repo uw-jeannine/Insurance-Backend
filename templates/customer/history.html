@@ -39,28 +39,20 @@
 <div class="container">
   <div class="panel panel-primary">
     <div class="panel-heading">
-      <h6 class="panel-title">History</h6>
+      <h6 class="panel-title">Thank you for registration</h6>
     </div>
     <table class="table table-hover" id="dev-table">
       <thead>
         <tr>
-        <th>Serial No.</th>
-          <th>Policy Name</th>
-
-          <th> Applied Date</th>
+          <th>tracking_number</th>
           <th> Status</th>
           
         </tr>
       </thead>
-      {% for t in policies %}
       <tr>
-        <td> {{ forloop.counter }}</td>
-        <td> {{t.Policy}}</td>
-
-        <td>{{t.creation_date}}</td>
-        <td>{{t.status}}</td>
+        <td> {{ trk }}</td>
+        <td>{{status}}</td>
       </tr>
-      {% endfor %}
     </table>
   </div>
 </div>
