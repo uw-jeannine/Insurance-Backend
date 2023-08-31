@@ -1,0 +1,139 @@
+{% load static %}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <title>{% if pdf_title %}{{ pdf_title }}{% else %}PDF{% endif %}</title>
+    <style>
+        @page{
+            size: letter landscape;
+            margin-left: 6px;
+            margin-right: 6px;
+        }
+        body {
+            font-size: 12px;
+        }
+
+        #customers {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #customers td,
+        #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #customers tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #customers tr:hover {
+            background-color: #ddd;
+        }
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #04AA6D;
+            color: white;
+        }
+
+        .title {
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class='wrapper'>
+        <div class='header'>
+            <p class='title'>Report of customers and thier policy </p>
+        </div>
+        <div>
+            <div class='details'>
+                <table id="customers">
+                    <tr>
+                        <th> No</th>
+                        <th>Name</th>
+                        <th>Mobile</th>
+                        <th>Address</th>
+                    </tr>
+                    {% for t in datas %}
+                    <tr>
+                        <td> {{ forloop.counter }}</td>
+                        <td> {{t.get_name}}</td>
+                        <td>{{t.mobile}}</td>
+                        <td>{{t.address}}</td>
+
+                    </tr>
+                    {% endfor %}
+                </table>
+                <hr class='hrItem' />
+            </div>
+            <div class='details'>
+                <div class='header'>
+                    <p class='title'>Report about customers who applied in Vihecle Insurance </p>
+                </div>
+                <table id="customers">
+                    <thead>
+                        <tr>
+                            <th>Customer</th>
+                            <th>Marque</th>
+                            <th>Platenumnber</th>
+                            <th>Yearofmanufacture</th>
+                            <th>Seat capacity</th>
+                            <th>Vehicle</th>
+                        </tr>
+                    </thead>
+                    {% for t in datasapl %}
+                    <tr>
+                        <td> {{ t.customerid }}</td>
+                        <td> {{ t.marque }}</td>
+                        <td> {{ t.platenumnber }}</td>
+                        <td> {{t.yearofmanufacture}}</td>
+                        <td> {{t.seatcapacity}}</td>
+                        <td> {{t.typeofvehicle}}</td>
+                    
+                    </tr>
+                    {% endfor %}
+                </table>
+
+                <div class='header'>
+                    <p class='title'>Report of About policies detail </p>
+                </div>
+                <table id="customers">
+                    <thead>
+                      <tr>
+                      <th>Serial No.</th>
+                        <th>Policy Name</th>
+                        <th>Type of vehicle</th>
+                        <th> Category</th>
+                        <th> Premium</th>
+                        <th> Period</th>
+                        <th> Creation Date</th>
+                        
+                      </tr>
+                    </thead>
+                    {% for ts in datasap %}
+                    <tr>
+                      <td> {{ forloop.counter }}</td>
+                      <td> {{ts.policy_name}}</td>
+                      <td> {{ts.type_of_vehicle}}</td>
+                      <td> {{ts.category}}</td>
+                      <td> {{ts.premium_amount}}</td>
+                      <td> {{ts.tenure}}</td>
+                      <td>{{ts.creation_date}}</td>
+                    </tr>
+                    {% endfor %}
+                  </table>
+                <hr class='hrItem' />
+            </div>
+        </div>
+</body>
+
+</html>
