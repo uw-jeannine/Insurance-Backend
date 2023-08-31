@@ -291,13 +291,17 @@ def claimFeedback(request,email):
 def report(request):
     records = CMODEL.ApplyPolicyVehicle.objects.all()
     customers = CMODEL.Customer.objects.all()
-    # user_instance = get_object_or_404(User,id = records.applyid.id)
-    # recordscustomer = models.Policy.objects.get(id=user_instance.id)
-    # print(recordscustomer.tenure)
+    policy = models.Policy.objects.all()
+    
 
     
 
-    html = render_to_string('insurance/pdfs/report.html', {'datas': customers})
+    html = render_to_string('insurance/pdfs/report.html', {
+        'datas': customers,
+        'datasapl':records,
+        'datasap':policy
+
+    })
 
     # Create a PDF object
     response = HttpResponse(content_type='application/pdf')
