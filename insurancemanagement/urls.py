@@ -25,7 +25,7 @@ urlpatterns = [
     path('claim_feedback/<str:email>',views.claimFeedback,name="claim_feedback"),
     path('insurance/report',views.report,name="report"),
 
-    path('renderpdf<int:id>',views.generate_pdf,name="pdf_view"),
+    path('renderpdf/<int:id>',views.generate_pdf,name="pdf_view"),
 
     path('admin-send-vignette/<int:id>',views.adminsendvignette,name="admin-send-vignette"),
 
