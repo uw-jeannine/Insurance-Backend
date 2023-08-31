@@ -44,7 +44,7 @@
     {% endfor %}
 {% endif %}
 <form method="POST" autocomplete="off" enctype="multipart/form-data" class="m-5 "
-    action="{% url 'moredetail-vehicle' id %}">
+    action="{% url 'moredetail-vehicle' policy.id %}">
     {% csrf_token %}
 
     <!-- Fields for vehicle insurance -->
