@@ -105,7 +105,7 @@ def question_history_view(request):
     return render(request,'customer/question_history.html',{'questions':questions,'customer':customer})
 
 def submit_claim_view(request):
-
+    customer = models.Customer.objects.get(user_id=request.user.id)
     if request.method == 'POST':
         submit_claim = Submit_claim()
         submit_claim.name =  request.POST['name']
@@ -124,7 +124,8 @@ def submit_claim_view(request):
         submit_claim.coverage_amount = request.POST['coverage_amount']
         submit_claim.save()
         messages.success( request,"Claims added successfully")
-    return render(request,'customer/submit_claim.html')
+    context = {"customer": customer}
+    return render(request,'customer/submit_claim.html', context=context)
 
 def claim_history_view(request):
     return render(request,'customer/claim_history.html')
