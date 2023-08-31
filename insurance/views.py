@@ -26,6 +26,7 @@ from django.http import HttpResponse
 from django.template.loader import render_to_string
 from xhtml2pdf import pisa
 from dateutil.relativedelta import relativedelta
+
 def generate_pdf(request,id):
     # Render the HTML template
     
@@ -43,6 +44,8 @@ def generate_pdf(request,id):
         'expire':new_date
         }
     print(recordscustomer.tenure)
+
+
 
     html = render_to_string('insurance/pdfs/invoice.html', {'data': records,'date':data})
 
@@ -75,6 +78,10 @@ def adminsendvignette(request,id):
             message, 
             from_email, 
             recipient_list,
+
+
+
+            
             )
         email.attach(
             attachment_data.name,
@@ -278,6 +285,30 @@ def claimFeedback(request,email):
         send_mail(subject, message, from_email, recipient_list, html_message=html_message)
         messages.success( request,"Claims added successfully")
     return render(request,'insurance/claimfeedback.html',{'email': email})
+
+
+
+def report(request):
+    records = CMODEL.ApplyPolicyVehicle.objects.all()
+    customers = CMODEL.Customer.objects.all()
+    # user_instance = get_object_or_404(User,id = records.applyid.id)
+    # recordscustomer = models.Policy.objects.get(id=user_instance.id)
+    # print(recordscustomer.tenure)
+
+    
+
+    html = render_to_string('insurance/pdfs/report.html', {'datas': customers})
+
+    # Create a PDF object
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'filename="generated_pdf.pdf"'
+
+    # Generate PDF using xhtml2pdf
+    pisa_status = pisa.CreatePDF(html, dest=response)
+    if pisa_status.err:
+        return HttpResponse('Error generating PDF', content_type='text/plain')
+
+    return response
 
 
 def delete_policy_view(request,pk):
