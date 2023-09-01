@@ -7,6 +7,7 @@
             body {
                 font-weight: 100;
                 font-size: 14px;
+                
             }
             .header {
                 font-size: 12px;
@@ -33,9 +34,82 @@
                 height: 1px;
                 /* Set the hr color */
                 color: #333; /* old IE */
-                background-color: #fff; /* Modern Browsers */
+                background-color: #fff; 
             }
+            .informations{
+              display:flex;
+              gap: 12px;
+            }
+
+            {% comment %} * {
+              margin: 0;
+              padding: 0;
+              box-sizing: border-box;
+             
+            }
+        
+            body {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              padding: 48px 0px;
+            }
+        
+            .content {
+              display: flex;
+              flex-direction: column;
+              gap: 48px;
+              justify-content: center;
+              align-items: center;
+              background-color: rgb(210, 207, 204);
+              padding: 48px;
+        
+            }
+        
+            .content .first-section {
+              display: flex;
+              gap: 24px;
+              width: 100%;
+            }
+        
+            .content .first-section img {
+              width: 150px;
+              height: 150px;
+              -o-object-fit: cover;
+              object-fit: cover;
+              border: 1px solid grey;
+            }
+        
+            .content .first-section .info {
+              display: flex;
+              flex-direction: column;
+              gap: 16px;
+            }
+        
+            .content .first-section .info p {
+              font-size: 20px;
+              width: 80%;
+            }
+        
+            .content .second-section {
+              width: 100%;
+              display: flex;
+              flex-direction: column;
+              gap: 24px;
+            }
+        
+            .content .second-section .informations {
+              display: flex;
+              flex-direction:row;
+              gap: 12px;
+            }
+        
+            .content .second-section .informations p,
+            .content .second-section .informations h1 {
+              font-size: 24px;
+            } {% endcomment %}
         </style>
+
     </head>
     <body>
         <div class='wrapper'>
@@ -45,18 +119,20 @@
         <div>
         <div class='details'>
             <div class="content">
-                <div class="first-section">
-                  <img src="{% static 'images/images.png' %}" alt="" style="background-image: url('{% static 'images/images.png' %}') ;" >
+                <div class="first-section" style="display:flex; gap:12px;">
+                  <img src="static/images/images.png" alt="" >
                   <div class="info text-center" style="display:flex; justify-content:center">
                     <p>Association des Assureurs du Rwanda </p>
                     <p>MOTOR INSURANCE CERTIFICATE</p>
                     <p>No. {{data.id}}</p>
                   </div>
                 </div>
+
+
                 <div class="second-section">
                   <div class="informations">
-                    <h1></h1>
-                    <span> POLICY HOLDER: {{data.customerid}}</span>
+                    <h1> POLICY HOLDER:</h1> 
+                    <span>{{data.customerid}}</span>
                   </div>
                   <div class="informations">
                     <h1>POLICY NO:</h1>
@@ -84,7 +160,7 @@
                   </div>
                   <div class="informations">
                     <h1>USAGE:</h1>
-                    <span>{{data.typeofvehicle}}</span>
+                    <span>{{data.type_of_vehicle}}</span>
                   </div>
                   <div class="informations">
                     <h1>INSURER:</h1>

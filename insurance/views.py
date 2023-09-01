@@ -33,19 +33,18 @@ def generate_pdf(request,id):
     records = CMODEL.ApplyPolicyVehicle.objects.get(id=id)
     user_instance = get_object_or_404(User,id = records.applyid.id)
     recordscustomer = models.Policy.objects.get(id=user_instance.id)
-
+    print(user_instance)
     current_date = datetime.date.today()
     months_to_add = recordscustomer.tenure
     new_date = current_date + relativedelta(months=months_to_add)
     print(new_date)
 
     data = {
+        'image': 'static/images/images.png',
         'today': datetime.date.today(), 
         'expire':new_date
         }
     print(recordscustomer.tenure)
-
-
 
     html = render_to_string('insurance/pdfs/invoice.html', {'data': records,'date':data})
 
@@ -62,7 +61,8 @@ def generate_pdf(request,id):
 
 def adminsendvignette(request,id):
     policyrecords = CMODEL.ApplyPolicyVehicle.objects.get(id=id)
-    user_instance = get_object_or_404(User,id = policyrecords.customerid.id)
+    user_instance = get_object_or_404(User, id=policyrecords.customerid.id)
+
     recordscustomer = CMODEL.Customer.objects.get(id=user_instance.id)
     print(recordscustomer.email)
     if request.method == 'POST':
@@ -277,7 +277,7 @@ def admin_delete_policy_view(request):
 
 def claimFeedback(request,email):
     if request.method == 'POST':
-        subject = 'Reply Claim feedback'
+        subject = 'Insurance Claim feedback'
         message = request.POST.get('message')
         html_message = str(message)
         from_email =   settings.EMAIL_HOST_USER
@@ -342,8 +342,8 @@ def approve_request_view(request,pk):
     recordscustomer = CMODEL.Customer.objects.get(id=user_instance.id)
     print(recordscustomer.email)
     subject = 'Insurance application'
-    message = 'This is the plain text version of the email.'
-    html_message = '<p>This is the <strong>HTML</strong> version of the email.</p>'
+    message = 'This Auto Insurance System. we wanted to let you know that your application was received and has been approved'
+    html_message = '<p>To procceed, you will need to make <strong>Payment</strong> through this contact.</p> <p>Contact: 0786004321</p> or <p>Bank account: 40019003828</p> <p> For more information do not hestitate to contact us </p>'
     from_email =   settings.EMAIL_HOST_USER
     recipient_list = [str(recordscustomer.email)]
     send_mail(subject, message, from_email, recipient_list, html_message=html_message)
@@ -357,8 +357,8 @@ def disapprove_request_view(request,pk):
     recordscustomer = CMODEL.Customer.objects.get(id=user_instance.id)
     print(recordscustomer.email)
     subject = 'Insurance application'
-    message = 'This is the plain text version of the email.'
-    html_message = '<p>This is the <strong>HTML</strong> version of the email.</p>'
+    message = 'This is Auto Insurance System. we wanted to let you know that your application was received and has been disapproved.'
+    html_message = '<p> Contact us For more clarification. </p> <p>Contact: 0786004321</p>'
     from_email =   settings.EMAIL_HOST_USER
     recipient_list = [str(recordscustomer.email)]
     send_mail(subject, message, from_email, recipient_list, html_message=html_message)
@@ -388,8 +388,8 @@ def approve_request_view_agri(request,pk):
     recordscustomer = CMODEL.Customer.objects.get(id=user_instance.id)
     print(recordscustomer.email)
     subject = 'Insurance application'
-    message = 'This is the plain text version of the email.'
-    html_message = '<p>This is the <strong>HTML</strong> version of the email.</p>'
+    message = 'This Auto Insurance System. we wanted to let you know that your application was received and has been approved'
+    html_message = '<p>To procceed, you will need to make <strong>Payment</strong> through this contact.</p> <p>Contact: 0786004321</p> or <p>Bank account: 40019003828</p> <p> For more information do not hestitate to contact us </p>'
     from_email =   settings.EMAIL_HOST_USER
     recipient_list = [str(recordscustomer.email)]
     send_mail(subject, message, from_email, recipient_list, html_message=html_message)
@@ -404,8 +404,8 @@ def disapprove_request_view_agri(request,pk):
     recordscustomer = CMODEL.Customer.objects.get(id=user_instance.id)
     print(recordscustomer.email)
     subject = 'Insurance application'
-    message = 'Cancelled the Request'
-    html_message = '<p>This is the <strong>HTML</strong> version of the email.</p>'+message
+    message = 'This is Auto Insurance System. we wanted to let you know that your application was received and has been disapproved.'
+    html_message = '<p> Contact us For more clarification. </p> <p>Contact: 0786004321</p>'+message
     from_email =   settings.EMAIL_HOST_USER
     recipient_list = [str(recordscustomer.email)]
     send_mail(subject, message, from_email, recipient_list, html_message=html_message)

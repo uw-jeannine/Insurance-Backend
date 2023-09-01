@@ -7,6 +7,10 @@ from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
 
+admin.site.site_header = "Auto Insurance System Admin"
+admin.site.site_title = "Auto Insurance System Admin Portal"
+admin.site.index_title = "Auto Insurance System"
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('customer/',include('customer.urls')),
