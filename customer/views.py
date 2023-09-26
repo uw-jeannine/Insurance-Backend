@@ -293,7 +293,7 @@ def paypack(request):
     cashin = Transaction().cashin(amount=100, phone_number="0786004321", mode="development")
     print(cashin)
    
-    return HttpResponse('Success')
+    return render(request,'loading.html')
 
 
 @csrf_exempt
@@ -301,8 +301,7 @@ def paypack1(request):
     body = json.loads(request.body)
     if request.method == 'POST' and body['data']['status'] =='successful':
 
-
-
         print(body)
+        return render(request,'index.html')
 
-    return HttpResponse('Success')
+    return HttpResponse('Transaction failed')
