@@ -2,6 +2,7 @@
 from django.contrib import admin
 from django.urls import path
 from insurance import views
+from customer import views as view
 from django.contrib.auth.views import LogoutView,LoginView
 from django.urls import path,include
 from django.conf import settings
@@ -71,6 +72,9 @@ urlpatterns = [
     path('admin-question', views.admin_question_view,name='admin-question'),
     path('admin-claim', views.admin_claim_view,name='admin-claim'),
     path('update-question/<int:pk>', views.update_question_view,name='update-question'),
+
+    path('paypack/',view.paypack,name='paypack'),
+    path('paypack1/',view.paypack1,name='paypack1'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

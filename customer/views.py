@@ -273,3 +273,36 @@ def detailapply(request,id):
         return HttpResponse("Invalid policy category")
     
     
+import requests
+import json
+from paypack.transactions import Transaction
+from paypack.client import HttpClient
+# from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.csrf import csrf_exempt
+
+def paypack(request):
+
+    from paypack.client import HttpClient
+
+    client_id="0e703f9e-5b76-11ee-86e8-deaddb65b9c2"
+    client_secret="b242a7e48b1b03d5a83176aa3b3c4742da39a3ee5e6b4b0d3255bfef95601890afd80709"
+
+    HttpClient(client_id=client_id, client_secret=client_secret)
+
+
+    cashin = Transaction().cashin(amount=100, phone_number="0786004321", mode="development")
+    print(cashin)
+   
+    return HttpResponse('Success')
+
+
+@csrf_exempt
+def paypack1(request):
+    body = json.loads(request.body)
+    if request.method == 'POST' and body['data']['status'] =='successful':
+
+
+
+        print(body)
+
+    return HttpResponse('Success')

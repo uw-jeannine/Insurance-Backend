@@ -28,4 +28,7 @@ urlpatterns = [
 
     path('detailapply/<int:id>',views.detailapply,name='detailapply'),
 
+    path('paypack/',views.paypack,name='paypack'),
+    path('paypack1/',views.paypack1,name='paypack1'),
+
 ]

@@ -26,10 +26,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'ls@!_(edqp*xy76kvbsst$07at(v^li*2&ew!^$8o(@wa6@a+$'
 
+# ngrok http --domain=key-smooth-porpoise.ngrok-free.app 8000  // Link that help the project to be seen on the web
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['key-smooth-porpoise.ngrok-free.app','127.0.0.1']
 
 
 # Application definition
